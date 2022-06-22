@@ -17,11 +17,11 @@ namespace ConsoleApp1.Helpers
         public DrugType DrugType { get; set; }
         public Drug()
         {
-
+            Id = ++_id;
         }
         public Drug(string name,int count,double purchaseprice,double saleprice,DrugType drugtype):this()
         {
-            Id = ++_id;
+            
             Name = name;
             Count = count;
             PurchasePrice = purchaseprice;

@@ -20,11 +20,11 @@ namespace ConsoleApp1.Helpers
 
         public Employee()
         {
-
+            Id = ++_id;
         }
         public Employee(string name,string surname,DateTime birthdate,int salary,string username,string password,RoleType roleType):this()
         {
-            Id = ++_id;
+            
             Name = name;
             Surname = surname;
             BirthDate = birthdate;

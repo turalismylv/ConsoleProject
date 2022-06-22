@@ -13,12 +13,12 @@ namespace ConsoleApp1.Helpers
         public string Name { get; set; }
         
         public int MinSalary { get; set; }
-        public int Budget { get; set; }
+        public double Budget { get; set; }
         public string  Location { get; set; }
         public List<Employee> employees;
         public List<Drug> drugs;
 
-        public Pharmacy(string name,int minsalary,int budget,string location)
+        public Pharmacy(string name,int minsalary,double budget,string location)
         {
             Id = ++_id;
             Name = name;
