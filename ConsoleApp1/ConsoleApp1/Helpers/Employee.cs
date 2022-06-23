@@ -33,6 +33,8 @@ namespace ConsoleApp1.Helpers
             Password = password;
             RoleType = roleType;
         }
+
+
     }
     enum RoleType
     {
