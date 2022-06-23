@@ -20,16 +20,13 @@ namespace ConsoleApp1
             Helper.Print("Login",ConsoleColor.Green);
             while (true)
             {
+                login1:
                 Helper.Print("Username daxil edin",ConsoleColor.Green);
                 string username = Console.ReadLine();
                 Helper.Print("Password daxil edin", ConsoleColor.Green);
                 string password = Console.ReadLine();   //SEHV DAXIL ETDIKDE ERROR QALIB!!!!!
                 foreach (var item in pharmacy.employees)
                 {
-                    //if (!(item.Username == username && item.Password == password))
-                    //{
-                    //    Helper.Print("USername ve ya parol sehvdir ", ConsoleColor.Red);
-                    //}
                     if (item.Username==username&&item.Password==password)
                     {
                         if (item.RoleType== RoleType.ADMIN)
@@ -301,9 +298,10 @@ namespace ConsoleApp1
                                     break;
                             }
                         }
-
                     }
                 }
+                Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                goto login1;
             }
             
         }
