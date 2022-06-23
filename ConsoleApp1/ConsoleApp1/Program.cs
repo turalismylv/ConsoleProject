@@ -9,7 +9,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Pharmacy pharmacy = new Pharmacy("Zeferan",200,10000,"Sabuncu.Zabrat");
+            Pharmacy pharmacy = new Pharmacy("Zeferan.Apket",200,10000,"Sabuncu.Zabrat");
             Employee admin = new Employee();
             admin.Username = "admin";
             admin.Password = "admin123";
@@ -24,7 +24,7 @@ namespace ConsoleApp1
                 Helper.Print("Username daxil edin",ConsoleColor.Green);
                 string username = Console.ReadLine();
                 Helper.Print("Password daxil edin", ConsoleColor.Green);
-                string password = Console.ReadLine();   //SEHV DAXIL ETDIKDE ERROR QALIB!!!!!
+                string password = Console.ReadLine();   
                 foreach (var item in pharmacy.employees)
                 {
                     if (item.Username==username&&item.Password==password)
