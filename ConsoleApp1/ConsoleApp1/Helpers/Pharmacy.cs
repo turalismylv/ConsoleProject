@@ -396,7 +396,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Hal hazirda bazada emplooye yoxdur maci<3", ConsoleColor.Red);
                 return;
             }
-            Helper.Print("Editlemel istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
+            Helper.Print("Editlemek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
             string edem = Console.ReadLine();
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(edem.ToUpper()));
             if (emp.Count == 0)
@@ -409,7 +409,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
             }
         delid:
-            Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
+            Helper.Print("Editlemek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
             string delem = Console.ReadLine();
             bool isDel = int.TryParse(delem, out int delid);
             if (!isDel)
