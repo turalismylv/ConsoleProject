@@ -9,7 +9,10 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Pharmacy pharmacy = new Pharmacy("Zeferan.Apket",200,1000,"Sabuncu.Zabrat");
+            string s = "Zeferan.Aptek SISTEMINE XOSH GELMISINIZ";
+            Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
+            Helper.Print(s, ConsoleColor.Yellow);
+            Pharmacy pharmacy = new Pharmacy("Zeferan.Aptek",200,1000,"Sabuncu.Zabrat");
             Employee admin = new Employee();
             admin.Username = "admin";
             admin.Password = "admin123";

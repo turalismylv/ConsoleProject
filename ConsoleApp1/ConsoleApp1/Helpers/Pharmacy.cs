@@ -36,7 +36,7 @@ namespace ConsoleApp1.Helpers
             string ename = Console.ReadLine();
             Helper.Print("Emplooye surname daxil edin", ConsoleColor.Yellow);
             string sname = Console.ReadLine();
-        dateTime:
+            dateTime:
             Helper.Print("Emplooye dogum tarixini qeyd edin: mm/dd/yyyy ", ConsoleColor.Yellow);
             string edate = Console.ReadLine();
             bool isDate = DateTime.TryParse(edate, out DateTime dateTime);
@@ -45,7 +45,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                 goto dateTime;
             }
-        esalary:
+            esalary:
             Helper.Print("Emplooye salary qeyd edin ", ConsoleColor.Yellow);
             string esal = Console.ReadLine();
             bool IsSal = int.TryParse(esal, out int esalary);
@@ -59,7 +59,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print($"Bu mebleg aptekin shertlerin odemir: Minimum: {MinSalary}, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto esalary;
             }
-        eusername:
+            eusername:
             Helper.Print("Emplooye username daxil edin", ConsoleColor.Yellow);
             string eusername = Console.ReadLine();
             foreach (var item1 in employees)
@@ -70,9 +70,9 @@ namespace ConsoleApp1.Helpers
                     goto eusername;
                 }
             }
-        SETPASS:
+            SETPASS:
             Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
-            
+
             string password = Console.ReadLine();
             if (password.Length >= 5)
             {
@@ -84,7 +84,7 @@ namespace ConsoleApp1.Helpers
 
                 if (!hasLowerChar.IsMatch(password))
                 {
-                    Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin",ConsoleColor.Red);
+                    Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else if (!hasUpperChar.IsMatch(password))
@@ -112,14 +112,14 @@ namespace ConsoleApp1.Helpers
                 {
                     roleType:
                     Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
-            string erole = Console.ReadLine();
-            Employee employee1 = new Employee();
-            employee1.Name = ename;
-            employee1.Surname = sname;
-            employee1.BirthDate = dateTime;
-            employee1.Salary = esalary;
-            employee1.Username = eusername;
-            employee1.Password = password;
+                    string erole = Console.ReadLine();
+                    Employee employee1 = new Employee();
+                    employee1.Name = ename;
+                    employee1.Surname = sname;
+                    employee1.BirthDate = dateTime;
+                    employee1.Salary = esalary;
+                    employee1.Username = eusername;
+                    employee1.Password = password;
                     if (erole.ToUpper() == "admin".ToUpper())
                     {
                         employee1.RoleType = RoleType.ADMIN;
@@ -135,7 +135,7 @@ namespace ConsoleApp1.Helpers
                     }
 
                     Helper.Print($"{ename} adli emplooye yaradildi", ConsoleColor.Yellow);
-            employees.Add(employee1);
+                    employees.Add(employee1);
                 }
             }
             else
@@ -144,12 +144,12 @@ namespace ConsoleApp1.Helpers
                 goto SETPASS;
             }
 
-           
+
         }
         public void AddDrug()
         {
             Drug drug = new Drug();
-        name1:
+            name1:
             Helper.Print("Derman adini daxil edin", ConsoleColor.Yellow);
             string dname = Console.ReadLine();
             drugtype:
@@ -170,7 +170,7 @@ namespace ConsoleApp1.Helpers
             else
             {
                 Helper.Print("Yanlis daxil edildi,Yeniden duzgun daxil et", ConsoleColor.Red);
-                    goto drugtype;
+                goto drugtype;
             }
 
             foreach (var item2 in drugs)
@@ -182,7 +182,7 @@ namespace ConsoleApp1.Helpers
                     goto name1;
                 }
             }
-        IsCount:
+            IsCount:
             Helper.Print("Dermanin sayini qeyd edin", ConsoleColor.Yellow);
             string dcoun = Console.ReadLine();
             bool IsCount = int.TryParse(dcoun, out int dcount);
@@ -191,7 +191,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto IsCount;
             }
-        purchase:
+            purchase:
             Helper.Print("Dermanin alis qiymetini daxil edin", ConsoleColor.Yellow);
             string dpurch = Console.ReadLine();
             bool isPur = double.TryParse(dpurch, out double dpurprice);
@@ -200,7 +200,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto purchase;
             }
-        saleprice:
+            saleprice:
             Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
             string dsal = Console.ReadLine();
             bool isSal = double.TryParse(dsal, out double saleprice); ;
@@ -243,7 +243,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
 
             }
-        did:
+            did:
             Helper.Print("Silmek istediyiniz dermanin  ID qeyd edin", ConsoleColor.Yellow);
             string didd = Console.ReadLine();
             bool isId = int.TryParse(didd, out int did);
@@ -284,7 +284,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print($"ID: {item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
 
             }
-        didd:
+            didd:
             Helper.Print("Editlemek istediyiniz dermanin  ID qeyd edin", ConsoleColor.Yellow);
             string ddid = Console.ReadLine();
             bool isIdd = int.TryParse(ddid, out int _did);
@@ -300,11 +300,11 @@ namespace ConsoleApp1.Helpers
                 DrugType dt = item6.DrugType;
                 if (item6.Id == _did)
                 {
-                newdrug:
+                    newdrug:
                     Helper.Print("Derman yeni adini daxil edin", ConsoleColor.Yellow);
                     string dnname = Console.ReadLine();
 
-                IsnCount:
+                    IsnCount:
                     Helper.Print("Dermanin sayini qeyd edin", ConsoleColor.Yellow);
                     string dncoun = Console.ReadLine();
                     bool IsnCount = int.TryParse(dncoun, out int dncount);
@@ -313,7 +313,7 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto IsnCount;
                     }
-                npurchase:
+                    npurchase:
                     Helper.Print("Dermanin alis qiymetini daxil edin", ConsoleColor.Yellow);
                     string dnpurch = Console.ReadLine();
                     bool isnPur = double.TryParse(dnpurch, out double dnpurprice);
@@ -322,7 +322,7 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto npurchase;
                     }
-                nsaleprice:
+                    nsaleprice:
                     Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
                     string dnsal = Console.ReadLine();
                     bool isnSal = double.TryParse(dnsal, out double nsaleprice);
@@ -388,7 +388,7 @@ namespace ConsoleApp1.Helpers
             {
                 Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
             }
-        _did:
+            _did:
             Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
             string ddidd = Console.ReadLine();
             bool isId_ = int.TryParse(ddidd, out int _didd);
@@ -427,7 +427,7 @@ namespace ConsoleApp1.Helpers
             {
                 Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
             }
-        delid:
+            delid:
             Helper.Print("Editlemek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
             string delem = Console.ReadLine();
             bool isDel = int.TryParse(delem, out int delid);
@@ -445,7 +445,7 @@ namespace ConsoleApp1.Helpers
                     string newem = Console.ReadLine();
                     Helper.Print("Yeni soyad daxil edin", ConsoleColor.Yellow);
                     string newsem = Console.ReadLine();
-                dateTimee:
+                    dateTimee:
                     Helper.Print("Emplooyenin yeni dogum tarixini qeyd edin: mm/dd/yyyy ", ConsoleColor.Yellow);
                     string endate = Console.ReadLine();
                     bool isnDate = DateTime.TryParse(endate, out DateTime ndateTime);
@@ -454,7 +454,7 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                         goto dateTimee;
                     }
-                nesalary:
+                    nesalary:
                     Helper.Print("Emplooyenin yeni salary qeyd edin ", ConsoleColor.Yellow);
                     string nesal = Console.ReadLine();
                     bool IsnSal = int.TryParse(nesal, out int nesalary);
@@ -468,7 +468,7 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto nesalary;
                     }
-                neusername:
+                    neusername:
                     Helper.Print("Emplooye username daxil edin", ConsoleColor.Yellow);
                     string neusername = Console.ReadLine();
                     foreach (var item1 in employees)
@@ -479,8 +479,8 @@ namespace ConsoleApp1.Helpers
                             goto neusername;
                         }
                     }
-                   
-                SETPASS:
+
+                    SETPASS:
                     Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
 
                     string password = Console.ReadLine();
@@ -531,7 +531,7 @@ namespace ConsoleApp1.Helpers
                             {
                                 item5.RoleType = RoleType.STAFF;
                             }
-                            else 
+                            else
                             {
                                 Helper.Print("Duzgun daxil edilmedi,Yeniden daxil edin", ConsoleColor.Red);
                                 goto edroletype;
@@ -563,8 +563,14 @@ namespace ConsoleApp1.Helpers
             Helper.Print("Derman adi daxil edin", ConsoleColor.DarkYellow);
             string dad = Console.ReadLine();
             Helper.Print("Derman tipini qeyd edin: syrob/powder/tablet?", ConsoleColor.DarkYellow);
+            ddd:
             string dyit = Console.ReadLine();
-        dsay:
+            if (dyit.ToLower() != "syrob".ToLower() && dyit.ToLower() != "powder".ToLower() && dyit.ToLower() != "tablet".ToLower())
+            {
+                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
+                goto ddd;
+            }
+            dsay:
             Helper.Print("Sayini daxil edin", ConsoleColor.DarkYellow);
             string dsay = Console.ReadLine();
             bool isSay = int.TryParse(dsay, out int ddsay);
@@ -590,12 +596,13 @@ namespace ConsoleApp1.Helpers
                 if (druge.Count < ddsay)
                 {
                     Helper.Print($"Qeyd etdiyiniz qeder yoxdur,{druge.Count} bu qeder derman var isteyirsinizmi?: yes/no", ConsoleColor.Blue);
+                    yesno:
                     string yesno2 = Console.ReadLine();
                     int oldco = druge.Count;
                     if (yesno2.ToUpper() == "yes".ToUpper())
                     {
                         druge.Count = druge.Count - druge.Count;
-                        Budget = Budget + (druge.SalePrice *oldco);
+                        Budget = Budget + (druge.SalePrice * oldco);
                         Helper.Print($"{druge.Name} adli derman satildi maci<3,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                         return;
                     }
@@ -603,8 +610,14 @@ namespace ConsoleApp1.Helpers
                     {
                         return;
                     }
+                    else
+                    {
+                        Helper.Print("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
+                        goto yesno;
+                    }
                 }
                 Helper.Print($"ID:{druge.Id} AD:{druge.Name} Say:{druge.Count} Tip:{druge.DrugType} SAtis qiymeti:{druge.SalePrice}", ConsoleColor.Yellow);
+                yesno2:
                 Helper.Print("Satis etmek istediynize eminsinizmi: yes/no?", ConsoleColor.Green);
                 string yesno = Console.ReadLine();
                 if (yesno.ToUpper() == "yes".ToUpper())
@@ -613,11 +626,23 @@ namespace ConsoleApp1.Helpers
                     Budget = Budget + (druge.SalePrice * ddsay);
                     Helper.Print($"{druge.Name} adli derman {ddsay} eded satildi maci<3,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                 }
+                else if (yesno.ToUpper() == "no".ToUpper())
+                {
+                    return;
+                }
+                else
+                {
+                    Helper.Print("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
+                    goto yesno2;
+                }
             }
         }
-
     }
-
 }
+        
+
+    
+
+
 
 
