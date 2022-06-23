@@ -94,7 +94,7 @@ namespace ConsoleApp1.Helpers
                 }
                 else if (!hasMiniMaxChars.IsMatch(password))
                 {
-                    Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Print("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else if (!hasNumber.IsMatch(password))
@@ -207,7 +207,7 @@ namespace ConsoleApp1.Helpers
             drug.SalePrice = saleprice;
             drugs.Add(drug);
             Budget = Budget - (dpurprice * dcount);
-            Helper.Print($"{dname} adli derman elave olundu", ConsoleColor.Green);
+            Helper.Print($"{dname} adli derman elave olundu , Umumi budce: {Budget}", ConsoleColor.Green);
         }
         public void DeletDrug()
         {
@@ -245,7 +245,7 @@ namespace ConsoleApp1.Helpers
                 {
                     drugs.Remove(item5);
                     Budget = Budget + (item5.PurchasePrice * item5.Count);
-                    Helper.Print($"{item5.Name} adli derman silindi twk", ConsoleColor.Blue);
+                    Helper.Print($"{item5.Name} adli derman silindi twk,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                     break;
                 }
             }
@@ -350,7 +350,7 @@ namespace ConsoleApp1.Helpers
                     item6.PurchasePrice = dnpurprice;
                     item6.SalePrice = nsaleprice;
                     Budget = Budget + (oldpursh * count) - (dnpurprice * dncount);
-                    Helper.Print($"{item6.Name} addli derman editlendi twk<3", ConsoleColor.Blue);
+                    Helper.Print($"{item6.Name} addli derman editlendi twk<3,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                 }
             }
         }
@@ -485,7 +485,7 @@ namespace ConsoleApp1.Helpers
                         }
                         else if (!hasMiniMaxChars.IsMatch(password))
                         {
-                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Print("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
                         else if (!hasNumber.IsMatch(password))
@@ -566,11 +566,12 @@ namespace ConsoleApp1.Helpers
                 {
                     Helper.Print($"Qeyd etdiyiniz qeder yoxdur,{druge.Count} bu qeder derman var isteyirsinizmi?: yes/no", ConsoleColor.Blue);
                     string yesno2 = Console.ReadLine();
+                    int oldco = druge.Count;
                     if (yesno2.ToUpper() == "yes".ToUpper())
                     {
                         druge.Count = druge.Count - druge.Count;
-                        Budget = Budget + (druge.SalePrice * druge.Count);
-                        Helper.Print($"{druge.Name} adli derman satildi maci<3", ConsoleColor.Blue);
+                        Budget = Budget + (druge.SalePrice *oldco);
+                        Helper.Print($"{druge.Name} adli derman satildi maci<3,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                         return;
                     }
                     else if (yesno2.ToUpper() == "no".ToUpper())
@@ -585,7 +586,7 @@ namespace ConsoleApp1.Helpers
                 {
                     druge.Count = druge.Count - ddsay;
                     Budget = Budget + (druge.SalePrice * ddsay);
-                    Helper.Print($"{druge.Name} adli derman {ddsay} eded satildi maci<3", ConsoleColor.Blue);
+                    Helper.Print($"{druge.Name} adli derman {ddsay} eded satildi maci<3,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                 }
             }
         }
