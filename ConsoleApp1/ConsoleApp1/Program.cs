@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using ConsoleApp1.Helpers;
 
 namespace ConsoleApp1
@@ -118,43 +119,7 @@ namespace ConsoleApp1
                                 #endregion
                                 case 2:
                                     #region satis
-                                    if (pharmacy.drugs.Count==0)
-                                    {
-                                        Helper.Print("Bazada derman yoxdu !!", ConsoleColor.Red);
-                                        goto admin;
-                                    }
-                                    Helper.Print("Derman adi daxil edin", ConsoleColor.DarkYellow);
-                                    string dad = Console.ReadLine();
-                                    Helper.Print("Derman tipini qeyd edin: syrob/powder/tablet?", ConsoleColor.DarkYellow);
-                                    string dyit = Console.ReadLine();
-                                    dsay:
-                                    Helper.Print("Sayini daxil edin", ConsoleColor.DarkYellow);
-                                    string dsay = Console.ReadLine();
-                                    bool isSay = int.TryParse(dsay, out int ddsay);
-                                    if (!isSay)
-                                    {
-                                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
-                                        goto dsay;
-                                    }
-
-                                        List<Drug> drugess = pharmacy.drugs.FindAll(x => x.Name.ToUpper().Contains(dad.ToUpper()) && x.DrugType.ToString().ToUpper().Contains(dyit.ToUpper())&&x.Count>=ddsay);
-                                        if (drugess.Count == 0)
-                                        {
-                                            Helper.Print("Qalmayib", ConsoleColor.Red);
-                                            goto admin;
-                                        }
-                                    foreach (var druge in drugess)
-                                    {
-                                        Helper.Print($"ID:{druge.Id} AD:{druge.Name} Say:{druge.Count} Tip:{druge.DrugType} SAtis qiymeti:{druge.SalePrice}", ConsoleColor.Yellow);
-                                        Helper.Print("Satis etmek istediynize eminsinizmi: yes/no?", ConsoleColor.Green);
-                                        string yesno = Console.ReadLine();
-                                        if (yesno.ToUpper()=="yes".ToUpper())
-                                        {
-                                            pharmacy.drugs.Remove(druge);
-                                            pharmacy.Budget = pharmacy.Budget + (druge.SalePrice*druge.Count);
-                                            Helper.Print($"{druge.Name} adli derman satildi maci<3", ConsoleColor.Blue);
-                                        }
-                                    }
+                                    pharmacy.Seel();
                                     goto admin;
                                     break;
                                 #endregion
@@ -179,21 +144,162 @@ namespace ConsoleApp1
                                         }
                                     }
                                     item.Username = eusername;
-                                    Helper.Print("Yeni Password daxil edin", ConsoleColor.Yellow);
-                                    string nwpass = Console.ReadLine();
-                                    item.Password = nwpass;
+                                SETPASS:
+                                    Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
+
+                                    string npassword = Console.ReadLine();
+                                    if (npassword.Length >= 5)
+                                    {
+                                        var hasNumber = new Regex(@"[0-9]+");
+                                        var hasUpperChar = new Regex(@"[A-Z]+");
+                                        var hasMiniMaxChars = new Regex(@".{6,15}");
+                                        var hasLowerChar = new Regex(@"[a-z]+");
+                                        var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                                        if (!hasLowerChar.IsMatch(npassword))
+                                        {
+                                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasUpperChar.IsMatch(npassword))
+                                        {
+                                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasMiniMaxChars.IsMatch(npassword))
+                                        {
+                                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasNumber.IsMatch(npassword))
+                                        {
+                                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+
+                                        else if (!hasSymbols.IsMatch(npassword))
+                                        {
+                                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else
+                                        {
+
+                                            item.Password = npassword;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                        goto SETPASS;
+                                    }
+                                    
                                     Helper.Print("Melumatlar yenilendi maci", ConsoleColor.Blue);
                                     goto admin;
                                 #endregion
-                               
                                 default:
                                     break;
                             }
                         }
                         else if (item.RoleType == RoleType.STAFF)
                         {
+                            staff:
                             Helper.Print("1.Satis et", ConsoleColor.Green);
                             Helper.Print("2.Melumatlari yenile", ConsoleColor.Green);
+                            Helper.Print("3.Cixish", ConsoleColor.Green);
+                            string snum = Console.ReadLine();
+                            bool isSme = int.TryParse(snum, out int smenu);
+                            if (!isSme)
+                            {
+                                Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                goto staff;
+                            }
+                            if (smenu==3)
+                            {
+                                goto login;
+                            }
+                            switch (smenu)
+                            {
+                                case 1:
+                                    pharmacy.Seel();
+                                    goto staff;
+                                    break;
+                                case 2:
+                                    #region uploadacont
+                                    Helper.Print("Yeni adinizi daxil edin", ConsoleColor.Yellow);
+                                    string nwname1 = Console.ReadLine();
+                                    item.Name = nwname1;
+                                    Helper.Print("Yeni Soyadinizi daxil edin", ConsoleColor.Yellow);
+                                    string nwsname1 = Console.ReadLine();
+                                    item.Surname = nwsname1;
+
+                                eusername:
+                                    Helper.Print("Yeni username daxil edin", ConsoleColor.Yellow);
+                                    string eusername1 = Console.ReadLine();
+                                    foreach (var item1 in pharmacy.employees)
+                                    {
+                                        if (item1.Username == eusername1)
+                                        {
+                                            Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                                            goto eusername;
+                                        }
+                                    }
+                                    item.Username = eusername1;
+                                SETPASS:
+                                    Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
+                                    string npassword1 = Console.ReadLine();
+                                    if (npassword1.Length >= 5)
+                                    {
+                                        var hasNumber = new Regex(@"[0-9]+");
+                                        var hasUpperChar = new Regex(@"[A-Z]+");
+                                        var hasMiniMaxChars = new Regex(@".{6,15}");
+                                        var hasLowerChar = new Regex(@"[a-z]+");
+                                        var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                                        if (!hasLowerChar.IsMatch(npassword1))
+                                        {
+                                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasUpperChar.IsMatch(npassword1))
+                                        {
+                                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasMiniMaxChars.IsMatch(npassword1))
+                                        {
+                                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else if (!hasNumber.IsMatch(npassword1))
+                                        {
+                                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+
+                                        else if (!hasSymbols.IsMatch(npassword1))
+                                        {
+                                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            goto SETPASS;
+                                        }
+                                        else
+                                        {
+
+                                            item.Password = npassword1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                        goto SETPASS;
+                                    }
+
+                                    Helper.Print("Melumatlar yenilendi maci", ConsoleColor.Blue);
+                                    goto staff;
+                                    #endregion
+                                default:
+                                    break;
+                            }
                         }
 
                     }

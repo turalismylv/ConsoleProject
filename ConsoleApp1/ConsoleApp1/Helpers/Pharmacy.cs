@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1.Helpers
@@ -11,14 +12,14 @@ namespace ConsoleApp1.Helpers
         public int Id { get; }
         public static int _id;
         public string Name { get; set; }
-        
+
         public int MinSalary { get; set; }
         public double Budget { get; set; }
-        public string  Location { get; set; }
+        public string Location { get; set; }
         public List<Employee> employees;
         public List<Drug> drugs;
 
-        public Pharmacy(string name,int minsalary,double budget,string location)
+        public Pharmacy(string name, int minsalary, double budget, string location)
         {
             Id = ++_id;
             Name = name;
@@ -53,7 +54,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                 goto esalary;
             }
-            if (esalary <MinSalary)
+            if (esalary < MinSalary)
             {
                 Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto esalary;
@@ -69,9 +70,47 @@ namespace ConsoleApp1.Helpers
                     goto eusername;
                 }
             }
+        SETPASS:
             Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
-            string epassword = Console.ReadLine();                              //PASSWORD YOXLANISI QALIBB!!!!
-            Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
+            
+            string password = Console.ReadLine();
+            if (password.Length >= 5)
+            {
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMiniMaxChars = new Regex(@".{6,15}");
+                var hasLowerChar = new Regex(@"[a-z]+");
+                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                if (!hasLowerChar.IsMatch(password))
+                {
+                    Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin",ConsoleColor.Red);
+                    goto SETPASS;
+                }
+                else if (!hasUpperChar.IsMatch(password))
+                {
+                    Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    goto SETPASS;
+                }
+                else if (!hasMiniMaxChars.IsMatch(password))
+                {
+                    Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    goto SETPASS;
+                }
+                else if (!hasNumber.IsMatch(password))
+                {
+                    Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    goto SETPASS;
+                }
+
+                else if (!hasSymbols.IsMatch(password))
+                {
+                    Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    goto SETPASS;
+                }
+                else
+                {
+                    Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
             string erole = Console.ReadLine();
             Employee employee1 = new Employee();
             employee1.Name = ename;
@@ -79,7 +118,7 @@ namespace ConsoleApp1.Helpers
             employee1.BirthDate = dateTime;
             employee1.Salary = esalary;
             employee1.Username = eusername;
-            employee1.Password = epassword;
+            employee1.Password = password;
             if (erole.ToUpper() == "admin".ToUpper())
             {
                 employee1.RoleType = RoleType.ADMIN;
@@ -91,6 +130,15 @@ namespace ConsoleApp1.Helpers
 
             Helper.Print($"{ename} adli emplooye yaradildi", ConsoleColor.Yellow);
             employees.Add(employee1);
+                }
+            }
+            else
+            {
+                Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                goto SETPASS;
+            }
+
+           
         }
         public void AddDrug()
         {
@@ -167,20 +215,20 @@ namespace ConsoleApp1.Helpers
             {
                 Helper.Print("Hal hazirda bazada derman yoxdur maci<3", ConsoleColor.Red);
                 return;
-            }  
+            }
             Helper.Print("Axtardiqiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
             string search = Console.ReadLine();
             List<Drug> druge = drugs.FindAll(x => x.Name.ToUpper().Contains(search.ToUpper()));
-            if (druge.Count==0)
+            if (druge.Count == 0)
             {
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var item4 in druge)
             {
-               
-                    Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
-                
+
+                Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
+
             }
         did:
             Helper.Print("Silmek istediyiniz dermanin  ID qeyd edin", ConsoleColor.Yellow);
@@ -290,13 +338,13 @@ namespace ConsoleApp1.Helpers
                     {
                         item6.DrugType = DrugType.TABLET;
                     }
-                   
-                        if (dt==item6.DrugType)
-                        {
-                            Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
-                            goto newdrug;
-                        }
-                    
+
+                    if (dt == item6.DrugType)
+                    {
+                        Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto newdrug;
+                    }
+
                     item6.Name = dnname;
                     item6.Count = dncount;
                     item6.PurchasePrice = dnpurprice;
@@ -308,18 +356,18 @@ namespace ConsoleApp1.Helpers
         }
         public void DeletEmploye()
         {
-           
+
             Helper.Print("Silmek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
             string dem = Console.ReadLine();
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(dem.ToUpper()));
-            if (emp.Count==0)
+            if (emp.Count == 0)
             {
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var em in emp)
             {
-                    Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
+                Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
             }
         _did:
             Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
@@ -412,30 +460,138 @@ namespace ConsoleApp1.Helpers
                             goto neusername;
                         }
                     }
+                   
+                SETPASS:
                     Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
-                    string nepassword = Console.ReadLine();                              //PASSWORD YOXLANISI QALIBB!!!!
-                    Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
-                    string nerole = Console.ReadLine();
-                    if (nerole.ToUpper() == "admin".ToUpper())
+
+                    string password = Console.ReadLine();
+                    if (password.Length >= 5)
                     {
-                        item5.RoleType = RoleType.ADMIN;
+                        var hasNumber = new Regex(@"[0-9]+");
+                        var hasUpperChar = new Regex(@"[A-Z]+");
+                        var hasMiniMaxChars = new Regex(@".{6,15}");
+                        var hasLowerChar = new Regex(@"[a-z]+");
+                        var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+                        if (!hasLowerChar.IsMatch(password))
+                        {
+                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            goto SETPASS;
+                        }
+                        else if (!hasUpperChar.IsMatch(password))
+                        {
+                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            goto SETPASS;
+                        }
+                        else if (!hasMiniMaxChars.IsMatch(password))
+                        {
+                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            goto SETPASS;
+                        }
+                        else if (!hasNumber.IsMatch(password))
+                        {
+                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            goto SETPASS;
+                        }
+
+                        else if (!hasSymbols.IsMatch(password))
+                        {
+                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            goto SETPASS;
+                        }
+                        else
+                        {
+                            Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
+                            string nerole = Console.ReadLine();
+                            if (nerole.ToUpper() == "admin".ToUpper())
+                            {
+                                item5.RoleType = RoleType.ADMIN;
+                            }
+                            else if (nerole.ToUpper() == "staff".ToUpper())
+                            {
+                                item5.RoleType = RoleType.STAFF;
+                            }
+                            item5.Name = newem;
+                            item5.Surname = newsem;
+                            item5.BirthDate = ndateTime;
+                            item5.Salary = nesalary;
+                            item5.Username = neusername;
+                            item5.Password = password;
+                            Helper.Print($"{item5.Name} adli isci editlendi twk<3", ConsoleColor.Blue);
+                        }
                     }
-                    else if (nerole.ToUpper() == "staff".ToUpper())
+                    else
                     {
-                        item5.RoleType = RoleType.STAFF;
+                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto SETPASS;
                     }
-                    item5.Name = newem;
-                    item5.Surname = newsem;
-                    item5.BirthDate = ndateTime;
-                    item5.Salary = nesalary;
-                    item5.Username = neusername;
-                    item5.Password = nepassword;
-                    Helper.Print($"{item5.Name} adli isci editlendi twk<3", ConsoleColor.Blue);
-                    
+                }
+            }
+        }
+        public void Seel()
+        {
+            if (drugs.Count == 0)
+            {
+                Helper.Print("Bazada derman yoxdu !!", ConsoleColor.Red);
+                return;
+            }
+            Helper.Print("Derman adi daxil edin", ConsoleColor.DarkYellow);
+            string dad = Console.ReadLine();
+            Helper.Print("Derman tipini qeyd edin: syrob/powder/tablet?", ConsoleColor.DarkYellow);
+            string dyit = Console.ReadLine();
+        dsay:
+            Helper.Print("Sayini daxil edin", ConsoleColor.DarkYellow);
+            string dsay = Console.ReadLine();
+            bool isSay = int.TryParse(dsay, out int ddsay);
+            if (!isSay)
+            {
+                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
+                goto dsay;
+            }
+
+            List<Drug> drugess = drugs.FindAll(x => x.Name.ToUpper().Contains(dad.ToUpper()) && x.DrugType.ToString().ToUpper().Contains(dyit.ToUpper())/*&&x.Count>=ddsay*/);
+            if (drugess.Count == 0)
+            {
+                Helper.Print("Qalmayib", ConsoleColor.Red);
+                return;
+            }
+            foreach (var druge in drugess)
+            {
+                if (druge.Count == 0)
+                {
+                    Helper.Print("Qalmayib", ConsoleColor.Red);
+                    return;
+                }
+                if (druge.Count < ddsay)
+                {
+                    Helper.Print($"Qeyd etdiyiniz qeder yoxdur,{druge.Count} bu qeder derman var isteyirsinizmi?: yes/no", ConsoleColor.Blue);
+                    string yesno2 = Console.ReadLine();
+                    if (yesno2.ToUpper() == "yes".ToUpper())
+                    {
+                        druge.Count = druge.Count - druge.Count;
+                        Budget = Budget + (druge.SalePrice * druge.Count);
+                        Helper.Print($"{druge.Name} adli derman satildi maci<3", ConsoleColor.Blue);
+                        return;
+                    }
+                    else if (yesno2.ToUpper() == "no".ToUpper())
+                    {
+                        return;
+                    }
+                }
+                Helper.Print($"ID:{druge.Id} AD:{druge.Name} Say:{druge.Count} Tip:{druge.DrugType} SAtis qiymeti:{druge.SalePrice}", ConsoleColor.Yellow);
+                Helper.Print("Satis etmek istediynize eminsinizmi: yes/no?", ConsoleColor.Green);
+                string yesno = Console.ReadLine();
+                if (yesno.ToUpper() == "yes".ToUpper())
+                {
+                    druge.Count = druge.Count - ddsay;
+                    Budget = Budget + (druge.SalePrice * ddsay);
+                    Helper.Print($"{druge.Name} adli derman {ddsay} eded satildi maci<3", ConsoleColor.Blue);
                 }
             }
         }
 
-        }
     }
+
+}
+
 
