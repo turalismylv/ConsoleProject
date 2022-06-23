@@ -12,6 +12,9 @@ namespace ConsoleApp1
             admin.Username = "admin";
             admin.Password = "admin123";
             admin.RoleType = RoleType.ADMIN;
+            admin.Name = "admin";
+            
+            
             pharmacy.employees.Add(admin);
             login:
             Helper.Print("Login",ConsoleColor.Green);
@@ -43,14 +46,17 @@ namespace ConsoleApp1
                             }
                             switch (menu)
                             {
+                                
                                 case 1:
-                                  
+                                #region adminpanel
+                                adminmenu:
                                     Helper.Print("1.Emplooye elave et", ConsoleColor.Green);
                                     Helper.Print("2.Drug elave et", ConsoleColor.Green);
                                     Helper.Print("3.Drug sil", ConsoleColor.Green);
                                     Helper.Print("4.Derman editle", ConsoleColor.Green);
                                     Helper.Print("5.Emplooye sil", ConsoleColor.Green);
                                     Helper.Print("6.Emplooye editle", ConsoleColor.Green);
+                                    Helper.Print("7. Cixish", ConsoleColor.Green);
                                     string adminmen = Console.ReadLine();
                                     bool IsInt1 = int.TryParse(adminmen, out int adminmenu);
                                     if (!IsInt1)
@@ -58,6 +64,11 @@ namespace ConsoleApp1
                                         Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                         goto case 1;
                                     }
+                                    if (adminmenu==7)
+                                    {
+                                        goto login;
+                                    }
+
                                     switch (adminmenu)
                                     {
                                         case 1:
@@ -84,9 +95,9 @@ namespace ConsoleApp1
                                                 Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                                 goto esalary;
                                             }
-                                            if (esalary>pharmacy.MinSalary)
+                                            if (esalary<pharmacy.MinSalary)
                                             {
-                                                Helper.Print("Aptek bu maasi qarshilaya bilmir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                                 goto esalary;
                                             }
                                             eusername:
@@ -149,7 +160,7 @@ namespace ConsoleApp1
                                             {
                                                 if (item2.Name==dname&&item2.DrugType==drug.DrugType) 
                                                 {
-                                                    Helper.Print("Bu adli ve typl derman artiq movcuddur",ConsoleColor.Red);
+                                                    Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin",ConsoleColor.Red);
 
                                                     goto name1;
                                                 }
@@ -175,7 +186,7 @@ namespace ConsoleApp1
                                             saleprice:
                                             Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
                                             string dsal = Console.ReadLine();
-                                            bool isSal = double.TryParse(dpurch, out double saleprice);
+                                            bool isSal = double.TryParse(dsal, out double saleprice); ;
                                             if (!isSal)
                                             {
                                                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -193,15 +204,16 @@ namespace ConsoleApp1
                                             pharmacy.drugs.Add(drug);
                                             pharmacy.Budget = pharmacy.Budget - (dpurprice*dcount);
                                             Helper.Print($"{dname} adli derman elave olundu", ConsoleColor.Green);
+                                            goto adminmenu;
                                             break;
                                         #endregion
                                         case 3:
-                                            #region delete drug
+                                            #region delete drug 
                                             if (pharmacy.drugs.Count==0)
                                             {
                                                 Helper.Print("Hal hazirda bazada derman yoxdur maci<3", ConsoleColor.Red);
-                                                goto login;
-                                            }
+                                                goto adminmenu;
+                                            }  //EGER ADDA YOXDUSA YOXDU CIXARTMAQI QALIB
                                             Helper.Print("Axtardiqiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
                                             string search = Console.ReadLine();
                                             foreach (var item4 in pharmacy.drugs)
@@ -209,7 +221,6 @@ namespace ConsoleApp1
                                                 if (item4.Name.ToLower()==search.ToLower())
                                                 {
                                                     Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
-
                                                 }
                                             }
                                             did:
@@ -231,9 +242,11 @@ namespace ConsoleApp1
                                                     break;
                                                 }
                                             }
+                                            goto adminmenu;
                                             break;
                                         #endregion
                                         case 4:
+                                            #region editdurg
                                             Helper.Print("Editlemek istediyiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
                                             string edit = Console.ReadLine();
                                             foreach (var item4 in pharmacy.drugs)
@@ -241,7 +254,6 @@ namespace ConsoleApp1
                                                 if (item4.Name.ToLower() == edit.ToLower())
                                                 {
                                                     Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
-
                                                 }
                                             }
                                             didd:
@@ -255,15 +267,217 @@ namespace ConsoleApp1
                                             }
                                             foreach (var item6 in pharmacy.drugs)
                                             {
+                                                double oldpursh = item6.PurchasePrice;
+                                                int count = item6.Count;
                                                 if (item6.Id==_did)
                                                 {
-                                                    //yeni melumatlar daxil etmek qalb!
+                                                    newdrug:
+                                                    Helper.Print("Derman yeni adini daxil edin", ConsoleColor.Yellow);
+                                                    string dnname = Console.ReadLine();
+                                                   
+                                                IsnCount:
+                                                    Helper.Print("Dermanin sayini qeyd edin", ConsoleColor.Yellow);
+                                                    string dncoun = Console.ReadLine();
+                                                    bool IsnCount = int.TryParse(dncoun, out int dncount);
+                                                    if (!IsnCount)
+                                                    {
+                                                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                        goto IsnCount;
+                                                    }
+                                                npurchase:
+                                                    Helper.Print("Dermanin alis qiymetini daxil edin", ConsoleColor.Yellow);
+                                                    string dnpurch = Console.ReadLine();
+                                                    bool isnPur = double.TryParse(dnpurch, out double dnpurprice);
+                                                    if (!isnPur)
+                                                    {
+                                                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                        goto npurchase;
+                                                    }
+                                                nsaleprice:
+                                                    Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
+                                                    string dnsal = Console.ReadLine();
+                                                    bool isnSal = double.TryParse(dnsal, out double nsaleprice);
+                                                    if (!isnSal)
+                                                    {
+                                                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                        goto nsaleprice;
+                                                    }
+                                                    if (pharmacy.Budget < (dnpurprice * dncount))
+                                                    {
+                                                        Helper.Print("Budceni kecdiyi ucun derman elave oluna bilmedi", ConsoleColor.Red);
+                                                        goto admin;
+
+                                                    }
+                                                    Helper.Print("Dermanin yeni tipini qeyd edin: SYROB/POWDER/TABLET ?", ConsoleColor.Yellow);
+                                                    string dntype = Console.ReadLine();
+                                                    if (dntype.ToUpper() == "syrob".ToUpper())
+                                                    {
+                                                        item6.DrugType = DrugType.SYROB;
+                                                    }
+                                                    else if (dntype.ToUpper() == "powder".ToUpper())
+                                                    {
+                                                        item6.DrugType = DrugType.POWDER;
+                                                    }
+                                                    else if (dntype.ToUpper() == "tablet".ToUpper())
+                                                    {
+                                                        item6.DrugType = DrugType.TABLET;
+                                                    }
+                                                    foreach (var item2 in pharmacy.drugs)
+                                                    {
+                                                        if (item2.Name == dnname && item2.DrugType == item6.DrugType)
+                                                        {
+                                                            Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                            goto newdrug;
+                                                        }
+                                                    }
+                                                    item6.Name = dnname;
+                                                    item6.Count = dncount;
+                                                    item6.PurchasePrice = dnpurprice;
+                                                    item6.SalePrice = nsaleprice;
+                                                    pharmacy.Budget = pharmacy.Budget + (oldpursh * count) - (dnpurprice * dncount);
+                                                    Helper.Print($"{item6.Name} addli derman editlendi twk<3", ConsoleColor.Blue);
+                                                    goto adminmenu;
                                                 }
                                             }
                                             break;
+                                        #endregion
+                                        case 5:
+                                            #region deletemplooye
+                                            if (pharmacy.employees.Count==0)
+                                            {
+                                                Helper.Print("Hal hazirda bazada emplooye yoxdur maci<3", ConsoleColor.Red);
+                                                goto adminmenu;
+                                            }
+                                            Helper.Print("Silmek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
+                                            string dem = Console.ReadLine();
+                                            foreach (var em in pharmacy.employees)
+                                            {
+                                                if (em.Name.ToLower() == dem.ToLower())
+                                                {
+                                                    Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
+                                                }
+                                            }
+                                        _did:
+                                            Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
+                                            string ddidd = Console.ReadLine();
+                                            bool isId_ = int.TryParse(ddidd, out int _didd);
+                                            if (!isId_)
+                                            {
+                                                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                                                goto _did;
+                                            }
+                                            foreach (var item5 in pharmacy.employees)
+                                            {
+                                                if (item5.Id == _didd)
+                                                {
+                                                    pharmacy.employees.Remove(item5);
+                                                   
+                                                    Helper.Print($"{item5.Name} adli emplooye silindi twk", ConsoleColor.Blue);
+                                                    break;
+                                                }
+                                            }
+                                            goto login;
+                                            break;
+                                        #endregion
+                                        case 6:
+                                            #region editemployee
+                                            if (pharmacy.employees.Count == 0)
+                                            {
+                                                Helper.Print("Hal hazirda bazada emplooye yoxdur maci<3", ConsoleColor.Red);
+                                                goto adminmenu;
+                                            }
+                                            Helper.Print("Editlemel istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
+                                            string edem = Console.ReadLine();
+                                            foreach (var empl in pharmacy.employees)
+                                            {
+                                                if (empl.Name.ToLower() == edem.ToLower())
+                                                {
+                                                    Helper.Print($"{empl.Id} {empl.Name} {empl.RoleType}", ConsoleColor.Green);
+                                                }
+                                            }
+                                       delid:
+                                            Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
+                                            string delem = Console.ReadLine();
+                                            bool isDel = int.TryParse(delem, out int delid);
+                                            if (!isDel)
+                                            {
+                                                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                                                goto delid;
+;
+                                            }
+                                            foreach (var item5 in pharmacy.employees)
+                                            {
+                                                if (item5.Id == delid)
+                                                {
+                                                    Helper.Print("Yeni ad daxil edin", ConsoleColor.Yellow);
+                                                    string newem = Console.ReadLine();
+                                                    Helper.Print("Yeni soyad daxil edin", ConsoleColor.Yellow);
+                                                    string newsem = Console.ReadLine();
+                                                dateTimee:
+                                                    Helper.Print("Emplooyenin yeni dogum tarixini qeyd edin: mm/dd/yyyy ", ConsoleColor.Yellow);
+                                                    string endate = Console.ReadLine();
+                                                    bool isnDate = DateTime.TryParse(endate, out DateTime ndateTime);
+                                                    if (!isnDate)
+                                                    {
+                                                        Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                                        goto dateTimee;
+                                                    }
+                                                nesalary:
+                                                    Helper.Print("Emplooyenin yeni salary qeyd edin ", ConsoleColor.Yellow);
+                                                    string nesal = Console.ReadLine();
+                                                    bool IsnSal = int.TryParse(nesal, out int nesalary);
+                                                    if (!IsnSal)
+                                                    {
+                                                        Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                                        goto nesalary;
+                                                    }
+                                                    if (nesalary < pharmacy.MinSalary)
+                                                    {
+                                                        Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                                        goto nesalary;
+                                                    }
+                                                neusername:
+                                                    Helper.Print("Emplooye username daxil edin", ConsoleColor.Yellow);
+                                                    string neusername = Console.ReadLine();
+                                                    foreach (var item1 in pharmacy.employees)
+                                                    {
+                                                        if (item1.Username == neusername)
+                                                        {
+                                                            Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                                                            goto neusername;
+                                                        }
+                                                    }
+                                                    Helper.Print("Emplooye password daxil edin", ConsoleColor.Yellow);
+                                                    string nepassword = Console.ReadLine();                              //PASSWORD YOXLANISI QALIBB!!!!
+                                                    Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
+                                                    string nerole = Console.ReadLine();
+                                                    if (nerole.ToUpper() == "admin".ToUpper())
+                                                    {
+                                                        item5.RoleType = RoleType.ADMIN;
+                                                    }
+                                                    else if (nerole.ToUpper() == "staff".ToUpper())
+                                                    {
+                                                        item5.RoleType = RoleType.STAFF;
+                                                    }
+                                                    item5.Name = newem;
+                                                    item5.Surname = newsem;
+                                                    item5.BirthDate = ndateTime;
+                                                    item5.Salary = nesalary;
+                                                    item5.Username = neusername;
+                                                    item5.Password = nepassword;
+                                                    Helper.Print($"{item5.Name} adli isci editlendi twk<3", ConsoleColor.Red);
+                                                    goto login;
+                                                }
+                                            }
+                                            break;
+                                        #endregion
                                         default:
                                             break;
                                     }
+                                    break;
+                                #endregion
+                                case 2:
+
                                     break;
                                 default:
                                     break;
