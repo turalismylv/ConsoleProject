@@ -116,12 +116,18 @@ namespace ConsoleApp1
                                 #endregion
                                 case 2:
                                     #region satis
-                                    pharmacy.Seel();
+                                    pharmacy.Sale();
                                     goto admin;
                                     break;
                                 #endregion
                                 case 3:
                                     #region uploadacont
+                                    if (item.Name=="admin")
+                                    {
+                                        Helper.Print("Siz SUPERADMIN olduqunuz ucun melumatlariniz yenilene bilmez", ConsoleColor.Red);
+                                        goto admin;
+                                        
+                                    }
                                     Helper.Print("Yeni adinizi daxil edin", ConsoleColor.Yellow);
                                     string nwname = Console.ReadLine();
                                     item.Name = nwname;
@@ -218,7 +224,7 @@ namespace ConsoleApp1
                             switch (smenu)
                             {
                                 case 1:
-                                    pharmacy.Seel();
+                                    pharmacy.Sale();
                                     goto staff;
                                     break;
                                 case 2:

@@ -56,7 +56,7 @@ namespace ConsoleApp1.Helpers
             }
             if (esalary < MinSalary)
             {
-                Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Print($"Bu mebleg aptekin shertlerin odemir: Minimum: {MinSalary}, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto esalary;
             }
         eusername:
@@ -110,6 +110,7 @@ namespace ConsoleApp1.Helpers
                 }
                 else
                 {
+                    roleType:
                     Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
             string erole = Console.ReadLine();
             Employee employee1 = new Employee();
@@ -119,16 +120,21 @@ namespace ConsoleApp1.Helpers
             employee1.Salary = esalary;
             employee1.Username = eusername;
             employee1.Password = password;
-            if (erole.ToUpper() == "admin".ToUpper())
-            {
-                employee1.RoleType = RoleType.ADMIN;
-            }
-            else if (erole.ToUpper() == "staff".ToUpper())
-            {
-                employee1.RoleType = RoleType.STAFF;
-            }
+                    if (erole.ToUpper() == "admin".ToUpper())
+                    {
+                        employee1.RoleType = RoleType.ADMIN;
+                    }
+                    else if (erole.ToUpper() == "staff".ToUpper())
+                    {
+                        employee1.RoleType = RoleType.STAFF;
+                    }
+                    else
+                    {
+                        Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto roleType;
+                    }
 
-            Helper.Print($"{ename} adli emplooye yaradildi", ConsoleColor.Yellow);
+                    Helper.Print($"{ename} adli emplooye yaradildi", ConsoleColor.Yellow);
             employees.Add(employee1);
                 }
             }
@@ -146,6 +152,7 @@ namespace ConsoleApp1.Helpers
         name1:
             Helper.Print("Derman adini daxil edin", ConsoleColor.Yellow);
             string dname = Console.ReadLine();
+            drugtype:
             Helper.Print("Dermanin tipini qeyd edin: SYROB/POWDER/TABLET ?", ConsoleColor.Yellow);
             string dtype = Console.ReadLine();
             if (dtype.ToUpper() == "syrob".ToUpper())
@@ -160,6 +167,12 @@ namespace ConsoleApp1.Helpers
             {
                 drug.DrugType = DrugType.TABLET;
             }
+            else
+            {
+                Helper.Print("Yanlis daxil edildi,Yeniden duzgun daxil et", ConsoleColor.Red);
+                    goto drugtype;
+            }
+
             foreach (var item2 in drugs)
             {
                 if (item2.Name == dname && item2.DrugType == drug.DrugType)
@@ -268,7 +281,7 @@ namespace ConsoleApp1.Helpers
             foreach (var item4 in druge)
             {
 
-                Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
+                Helper.Print($"ID: {item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
 
             }
         didd:
@@ -324,6 +337,7 @@ namespace ConsoleApp1.Helpers
                         return;
 
                     }
+                    newtype:
                     Helper.Print("Dermanin yeni tipini qeyd edin: SYROB/POWDER/TABLET ?", ConsoleColor.Yellow);
                     string dntype = Console.ReadLine();
                     if (dntype.ToUpper() == "syrob".ToUpper())
@@ -337,6 +351,11 @@ namespace ConsoleApp1.Helpers
                     else if (dntype.ToUpper() == "tablet".ToUpper())
                     {
                         item6.DrugType = DrugType.TABLET;
+                    }
+                    else
+                    {
+                        Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto newtype;
                     }
 
                     if (dt == item6.DrugType)
@@ -441,7 +460,7 @@ namespace ConsoleApp1.Helpers
                     bool IsnSal = int.TryParse(nesal, out int nesalary);
                     if (!IsnSal)
                     {
-                        Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                        Helper.Print($"Duzgun daxil edilmedi,MINIMUM: {MinSalary},Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                         goto nesalary;
                     }
                     if (nesalary < MinSalary)
@@ -501,6 +520,7 @@ namespace ConsoleApp1.Helpers
                         }
                         else
                         {
+                            edroletype:
                             Helper.Print("Emplooye roletype qeyd edin: Admin/Staff? ", ConsoleColor.Yellow);
                             string nerole = Console.ReadLine();
                             if (nerole.ToUpper() == "admin".ToUpper())
@@ -510,6 +530,11 @@ namespace ConsoleApp1.Helpers
                             else if (nerole.ToUpper() == "staff".ToUpper())
                             {
                                 item5.RoleType = RoleType.STAFF;
+                            }
+                            else 
+                            {
+                                Helper.Print("Duzgun daxil edilmedi,Yeniden daxil edin", ConsoleColor.Red);
+                                goto edroletype;
                             }
                             item5.Name = newem;
                             item5.Surname = newsem;
@@ -528,7 +553,7 @@ namespace ConsoleApp1.Helpers
                 }
             }
         }
-        public void Seel()
+        public void Sale()
         {
             if (drugs.Count == 0)
             {
