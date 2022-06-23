@@ -200,6 +200,11 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto purchase;
             }
+            if (Budget < (dpurprice * dcount))
+            {
+                Helper.Print($"Budceni kecdiyi ucun derman elave oluna bilmedi,MaxBudce: {Budget},Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+               goto IsCount;
+            }
             saleprice:
             Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
             string dsal = Console.ReadLine();
@@ -209,11 +214,7 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto saleprice;
             }
-            if (Budget < (dpurprice * dcount))
-            {
-                Helper.Print("Budceni kecdiyi ucun derman elave oluna bilmedi", ConsoleColor.Red);
-                return;
-            }
+            
             drug.Name = dname;
             drug.Count = dcount;
             drug.PurchasePrice = dpurprice;
@@ -322,6 +323,12 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto npurchase;
                     }
+                    if (Budget < (dnpurprice * dncount))
+                    {
+                        Helper.Print("Budceni kecdiyi ucun derman elave oluna bilmedi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto IsnCount;
+
+                    }
                     nsaleprice:
                     Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
                     string dnsal = Console.ReadLine();
@@ -331,12 +338,7 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto nsaleprice;
                     }
-                    if (Budget < (dnpurprice * dncount))
-                    {
-                        Helper.Print("Budceni kecdiyi ucun derman elave oluna bilmedi", ConsoleColor.Red);
-                        return;
-
-                    }
+                    
                     newtype:
                     Helper.Print("Dermanin yeni tipini qeyd edin: SYROB/POWDER/TABLET ?", ConsoleColor.Yellow);
                     string dntype = Console.ReadLine();

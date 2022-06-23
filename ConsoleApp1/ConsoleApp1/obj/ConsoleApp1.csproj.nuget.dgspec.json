@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\turalhi\\Desktop\\ConsolePriject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\turalhi\\Desktop\\Yeni klasör\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\turalhi\\Desktop\\ConsolePriject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\turalhi\\Desktop\\Yeni klasör\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\turalhi\\Desktop\\ConsolePriject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\turalhi\\Desktop\\Yeni klasör\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\turalhi\\Desktop\\ConsolePriject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\turalhi\\Desktop\\Yeni klasör\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\turalhi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\turalhi\\Desktop\\ConsolePriject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\turalhi\\Desktop\\Yeni klasör\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\turalhi\\AppData\\Roaming\\NuGet\\NuGet.Config",
