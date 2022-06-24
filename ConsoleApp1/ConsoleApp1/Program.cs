@@ -32,6 +32,7 @@ namespace ConsoleApp1
                 {
                     if (item.Username==username&&item.Password==password)
                     {
+                        Console.Clear();
                         if (item.RoleType== RoleType.ADMIN)
                         {
                             Helper.Print("Siz admin rolundasiniz", ConsoleColor.Yellow);
@@ -49,6 +50,7 @@ namespace ConsoleApp1
                             }
                             if (menu==4)
                             {
+                                Console.Clear();
                                 goto login;
                             }
                             switch (menu)
@@ -64,21 +66,26 @@ namespace ConsoleApp1
                                     Helper.Print("6.Emplooye editle", ConsoleColor.Green);
                                     Helper.Print("7. Cixish", ConsoleColor.Green);
                                     string adminmen = Console.ReadLine();
+                                    
                                     bool IsInt1 = int.TryParse(adminmen, out int adminmenu);
                                     if (!IsInt1)
                                     {
                                         Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                         goto case 1;
                                     }
+                                    
                                     if (adminmenu==7)
                                     {
                                         goto admin;
                                     }
                                     switch (adminmenu)
                                     {
+
                                         case 1:
                                             #region addemploye
+                                            
                                             pharmacy.AddEmplooye();
+                                            
                                             goto admin;
                                             break;
                                         #endregion
@@ -200,7 +207,7 @@ namespace ConsoleApp1
                                         goto SETPASS;
                                     }
                                     
-                                    Helper.Print("Melumatlar yenilendi maci", ConsoleColor.Blue);
+                                    Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto admin;
                                 #endregion
                                 default:
@@ -300,7 +307,7 @@ namespace ConsoleApp1
                                         goto SETPASS;
                                     }
 
-                                    Helper.Print("Melumatlar yenilendi maci", ConsoleColor.Blue);
+                                    Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto staff;
                                     #endregion
                                 default:

@@ -133,8 +133,8 @@ namespace ConsoleApp1.Helpers
                         Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto roleType;
                     }
-
-                    Helper.Print($"{ename} adli emplooye yaradildi", ConsoleColor.Yellow);
+                    Console.Clear();
+                    Helper.Print($"{ename.ToUpper()} adli emplooye yaradildi", ConsoleColor.Yellow);
                     employees.Add(employee1);
                 }
             }
@@ -178,7 +178,6 @@ namespace ConsoleApp1.Helpers
                 if (item2.Name == dname && item2.DrugType == drug.DrugType)
                 {
                     Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
-
                     goto name1;
                 }
             }
@@ -221,27 +220,29 @@ namespace ConsoleApp1.Helpers
             drug.SalePrice = saleprice;
             drugs.Add(drug);
             Budget = Budget - (dpurprice * dcount);
-            Helper.Print($"{dname} adli derman elave olundu , Umumi budce: {Budget}", ConsoleColor.Green);
+            Console.Clear();
+            Helper.Print($"{dname.ToUpper()} adli derman elave olundu , Umumi budce: {Budget}", ConsoleColor.Green);
         }
         public void DeletDrug()
         {
             if (drugs.Count == 0)
             {
-                Helper.Print("Hal hazirda bazada derman yoxdur maci<3", ConsoleColor.Red);
+                Console.Clear();
+                Helper.Print("Hal hazirda bazada derman yoxdur!", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Axtardiqiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
             string search = Console.ReadLine();
             List<Drug> druge = drugs.FindAll(x => x.Name.ToUpper().Contains(search.ToUpper()));
             if (druge.Count == 0)
-            {
+            {Console.Clear();
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var item4 in druge)
             {
 
-                Helper.Print($"{item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
+                Helper.Print($"ID: {item4.Id} Dernma Adi: {item4.Name.ToUpper()} Tip: {item4.DrugType}", ConsoleColor.Green);
 
             }
             did:
@@ -259,7 +260,8 @@ namespace ConsoleApp1.Helpers
                 {
                     drugs.Remove(item5);
                     Budget = Budget + (item5.PurchasePrice * item5.Count);
-                    Helper.Print($"{item5.Name} adli derman silindi twk,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
+                    Console.Clear();
+                    Helper.Print($"{item5.Name.ToUpper()} adli derman silindi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                     break;
                 }
             }
@@ -268,7 +270,8 @@ namespace ConsoleApp1.Helpers
         {
             if (drugs.Count == 0)
             {
-                Helper.Print("Hal hazirda bazada derman yoxdur maci<3", ConsoleColor.Red);
+                Console.Clear();
+                Helper.Print("Hal hazirda bazada derman yoxdur ", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Editlemek istediyiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
@@ -276,13 +279,14 @@ namespace ConsoleApp1.Helpers
             List<Drug> druge = drugs.FindAll(x => x.Name.ToUpper().Contains(edit.ToUpper()));
             if (druge.Count == 0)
             {
+                Console.Clear();
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var item4 in druge)
             {
 
-                Helper.Print($"ID: {item4.Id} {item4.Name} {item4.DrugType}", ConsoleColor.Green);
+                Helper.Print($"ID: {item4.Id} AD: {item4.Name} Tip: {item4.DrugType}", ConsoleColor.Green);
 
             }
             didd:
@@ -301,6 +305,7 @@ namespace ConsoleApp1.Helpers
                 DrugType dt = item6.DrugType;
                 if (item6.Id == _did)
                 {
+                    Budget = Budget + (oldpursh * count);
                     newdrug:
                     Helper.Print("Derman yeni adini daxil edin", ConsoleColor.Yellow);
                     string dnname = Console.ReadLine();
@@ -370,17 +375,24 @@ namespace ConsoleApp1.Helpers
                     item6.Count = dncount;
                     item6.PurchasePrice = dnpurprice;
                     item6.SalePrice = nsaleprice;
-                    Budget = Budget + (oldpursh * count) - (dnpurprice * dncount);
-                    Helper.Print($"{item6.Name} addli derman editlendi twk<3,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
+                    Budget = Budget - (dnpurprice * dncount);
+                    Console.Clear();
+                    Helper.Print($"{item6.Name.ToUpper()} addli derman editlendi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                 }
             }
         }
         public void DeletEmploye()
         {
-
+            
             Helper.Print("Silmek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
             string dem = Console.ReadLine();
+            if (dem == "admin")
+            {
+                Helper.Print("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
+                return;
+            }
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(dem.ToUpper()));
+            
             if (emp.Count == 0)
             {
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
@@ -388,7 +400,7 @@ namespace ConsoleApp1.Helpers
             }
             foreach (var em in emp)
             {
-                Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
+                Helper.Print($"ID: {em.Id} Ad: {em.Name} Tip :{em.RoleType}", ConsoleColor.Green);
             }
             _did:
             Helper.Print("Silmek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
@@ -399,35 +411,49 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto _did;
             }
+            if (_didd==1)
+            {
+                Helper.Print("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
+                return;
+            }
             foreach (var item5 in employees)
             {
                 if (item5.Id == _didd)
                 {
                     employees.Remove(item5);
 
-                    Helper.Print($"{item5.Name} adli emplooye silindi twk", ConsoleColor.Blue);
+                    Helper.Print($"{item5.Name.ToUpper()} adli emplooye silindi ", ConsoleColor.Blue);
                     break;
                 }
             }
         }
         public void EditEmploye()
         {
+            
             if (employees.Count == 0)
             {
-                Helper.Print("Hal hazirda bazada emplooye yoxdur maci<3", ConsoleColor.Red);
+                Console.Clear();
+                Helper.Print("Hal hazirda bazada emplooye yoxdur", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Editlemek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
             string edem = Console.ReadLine();
+            if (edem=="admin")
+            {
+                Console.Clear();
+                Helper.Print("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
+                return;
+            }
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(edem.ToUpper()));
             if (emp.Count == 0)
             {
+                Console.Clear();
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var em in emp)
             {
-                Helper.Print($"{em.Id} {em.Name} {em.RoleType}", ConsoleColor.Green);
+                Helper.Print($"Id:{em.Id} AD: {em.Name.ToUpper()} Tip: {em.RoleType}", ConsoleColor.Green);
             }
             delid:
             Helper.Print("Editlemek istediyiniz emplooye  ID qeyd edin", ConsoleColor.Yellow);
@@ -438,6 +464,12 @@ namespace ConsoleApp1.Helpers
                 Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto delid;
                 ;
+            }
+            if (delid == 1)
+            {
+                Console.Clear();
+                Helper.Print("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
+                return;
             }
             foreach (var item5 in employees)
             {
@@ -544,7 +576,8 @@ namespace ConsoleApp1.Helpers
                             item5.Salary = nesalary;
                             item5.Username = neusername;
                             item5.Password = password;
-                            Helper.Print($"{item5.Name} adli isci editlendi twk<3", ConsoleColor.Blue);
+                            Console.Clear();
+                            Helper.Print($"{item5.Name.ToUpper()} adli isci editlendi ", ConsoleColor.Blue);
                         }
                     }
                     else
@@ -559,6 +592,7 @@ namespace ConsoleApp1.Helpers
         {
             if (drugs.Count == 0)
             {
+                Console.Clear();
                 Helper.Print("Bazada derman yoxdu !!", ConsoleColor.Red);
                 return;
             }
@@ -585,6 +619,7 @@ namespace ConsoleApp1.Helpers
             List<Drug> drugess = drugs.FindAll(x => x.Name.ToUpper().Contains(dad.ToUpper()) && x.DrugType.ToString().ToUpper().Contains(dyit.ToUpper())/*&&x.Count>=ddsay*/);
             if (drugess.Count == 0)
             {
+                Console.Clear();
                 Helper.Print("Qalmayib", ConsoleColor.Red);
                 return;
             }
@@ -592,6 +627,7 @@ namespace ConsoleApp1.Helpers
             {
                 if (druge.Count == 0)
                 {
+                    Console.Clear();
                     Helper.Print("Qalmayib", ConsoleColor.Red);
                     return;
                 }
@@ -605,11 +641,13 @@ namespace ConsoleApp1.Helpers
                     {
                         druge.Count = druge.Count - druge.Count;
                         Budget = Budget + (druge.SalePrice * oldco);
-                        Helper.Print($"{druge.Name} adli derman satildi maci<3,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
+                        Console.Clear();
+                        Helper.Print($"{druge.Name} adli derman satildi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                         return;
                     }
                     else if (yesno2.ToUpper() == "no".ToUpper())
                     {
+                        Console.Clear();
                         return;
                     }
                     else
@@ -626,10 +664,12 @@ namespace ConsoleApp1.Helpers
                 {
                     druge.Count = druge.Count - ddsay;
                     Budget = Budget + (druge.SalePrice * ddsay);
-                    Helper.Print($"{druge.Name} adli derman {ddsay} eded satildi maci<3,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
+                    Console.Clear();
+                    Helper.Print($"{druge.Name.ToUpper()} adli derman {ddsay} eded satildi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                 }
                 else if (yesno.ToUpper() == "no".ToUpper())
                 {
+                    Console.Clear();
                     return;
                 }
                 else
