@@ -134,6 +134,7 @@ namespace ConsoleApp1
                                     #region uploadacont
                                     if (item.Name=="admin")
                                     {
+                                        Console.Clear();
                                         Helper.Print("Siz SUPERADMIN olduqunuz ucun melumatlariniz yenilene bilmez", ConsoleColor.Red);
                                         goto admin;
                                         
@@ -206,7 +207,7 @@ namespace ConsoleApp1
                                         Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                         goto SETPASS;
                                     }
-                                    
+                                    Console.Clear();
                                     Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto admin;
                                 #endregion
@@ -229,6 +230,7 @@ namespace ConsoleApp1
                             }
                             if (smenu==3)
                             {
+                                Console.Clear();
                                 goto login;
                             }
                             switch (smenu)
@@ -306,7 +308,7 @@ namespace ConsoleApp1
                                         Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                         goto SETPASS;
                                     }
-
+                                    Console.Clear();
                                     Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto staff;
                                     #endregion
@@ -316,6 +318,7 @@ namespace ConsoleApp1
                         }
                     }
                 }
+                Console.Clear();
                 Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto login1;
             }
