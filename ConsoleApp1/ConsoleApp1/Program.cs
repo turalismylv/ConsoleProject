@@ -61,10 +61,12 @@ namespace ConsoleApp1
                                     Helper.Print("1.Emplooye elave et", ConsoleColor.Green);
                                     Helper.Print("2.Drug elave et", ConsoleColor.Green);
                                     Helper.Print("3.Drug sil", ConsoleColor.Green);
-                                    Helper.Print("4.Derman editle", ConsoleColor.Green);
+                                    Helper.Print("4.Drug editle", ConsoleColor.Green);
                                     Helper.Print("5.Emplooye sil", ConsoleColor.Green);
                                     Helper.Print("6.Emplooye editle", ConsoleColor.Green);
-                                    Helper.Print("7. Cixish", ConsoleColor.Green);
+                                    Helper.Print("7.Emplooyeleri gor", ConsoleColor.Green);
+                                    Helper.Print("8.Druglari gor", ConsoleColor.Green);
+                                    Helper.Print("9. Cixish", ConsoleColor.Green);
                                     string adminmen = Console.ReadLine();
                                     
                                     bool IsInt1 = int.TryParse(adminmen, out int adminmenu);
@@ -74,7 +76,7 @@ namespace ConsoleApp1
                                         goto case 1;
                                     }
                                     
-                                    if (adminmenu==7)
+                                    if (adminmenu==9)
                                     {
                                         goto admin;
                                     }
@@ -87,38 +89,53 @@ namespace ConsoleApp1
                                             pharmacy.AddEmplooye();
                                             
                                             goto admin;
-                                            break;
+                                            
                                         #endregion
                                         case 2:
                                             #region adddrug
                                             pharmacy.AddDrug();
                                             goto adminmenu;
-                                            break;
+                                           
                                         #endregion
                                         case 3:
                                             #region delete drug 
                                             pharmacy.DeletDrug();
                                             goto adminmenu;
-                                            break;
+                                            
                                         #endregion
                                         case 4:
                                             #region editdurg
                                             pharmacy.EditDrug();
                                             goto adminmenu;
-                                            break;
+                                            
                                         #endregion
                                         case 5:
                                             #region deletemplooye
                                             pharmacy.DeletEmploye();
                                             goto login;
-                                            break;
+                                            
                                         #endregion
                                         case 6:
                                             #region editemployee
                                             pharmacy.EditEmploye();
                                             goto adminmenu;
-                                            break;
+
                                         #endregion
+                                        case 7:
+                                            #region seeemploye
+                                            Console.Clear();
+                                            foreach (var itemm in pharmacy.employees)
+                                            {
+                                                
+                                                Helper.Print($"ID: {itemm.Id} Fullname: {itemm.Name} {itemm.Surname} Birthdate: {itemm.BirthDate} Salary: {itemm.Salary} Roletype: {itemm.RoleType}", ConsoleColor.DarkMagenta);
+                                            }
+                                            goto adminmenu;
+                                        #endregion
+                                        case 8:
+                                            #region seedrug
+                                            pharmacy.SeeDrug();
+                                            goto adminmenu;
+                                            #endregion
                                         default:
                                             break;
                                     }
@@ -128,7 +145,7 @@ namespace ConsoleApp1
                                     #region satis
                                     pharmacy.Sale();
                                     goto admin;
-                                    break;
+                                   
                                 #endregion
                                 case 3:
                                     #region uploadacont
@@ -220,7 +237,8 @@ namespace ConsoleApp1
                             staff:
                             Helper.Print("1.Satis et", ConsoleColor.Green);
                             Helper.Print("2.Melumatlari yenile", ConsoleColor.Green);
-                            Helper.Print("3.Cixish", ConsoleColor.Green);
+                            Helper.Print("3.Druglari gor", ConsoleColor.Green);
+                            Helper.Print("4.Cixish", ConsoleColor.Green);
                             string snum = Console.ReadLine();
                             bool isSme = int.TryParse(snum, out int smenu);
                             if (!isSme)
@@ -228,7 +246,7 @@ namespace ConsoleApp1
                                 Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                 goto staff;
                             }
-                            if (smenu==3)
+                            if (smenu==4)
                             {
                                 Console.Clear();
                                 goto login;
@@ -238,7 +256,7 @@ namespace ConsoleApp1
                                 case 1:
                                     pharmacy.Sale();
                                     goto staff;
-                                    break;
+                                   
                                 case 2:
                                     #region uploadacont
                                     Helper.Print("Yeni adinizi daxil edin", ConsoleColor.Yellow);
@@ -311,7 +329,13 @@ namespace ConsoleApp1
                                     Console.Clear();
                                     Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto staff;
+                                #endregion
+                                case 3:
+                                    #region seedrug
+                                    pharmacy.SeeDrug();
+                                    goto staff;
                                     #endregion
+                                    
                                 default:
                                     break;
                             }

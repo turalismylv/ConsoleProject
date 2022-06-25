@@ -641,6 +641,7 @@ namespace ConsoleApp1.Helpers
                     {
                         druge.Count = druge.Count - druge.Count;
                         Budget = Budget + (druge.SalePrice * oldco);
+                        drugs.Remove(druge);
                         Console.Clear();
                         Helper.Print($"{druge.Name} adli derman satildi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                         return;
@@ -667,6 +668,7 @@ namespace ConsoleApp1.Helpers
                     Console.Clear();
                     Helper.Print($"{druge.Name.ToUpper()} adli derman {ddsay} eded satildi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                 }
+                
                 else if (yesno.ToUpper() == "no".ToUpper())
                 {
                     Console.Clear();
@@ -679,6 +681,23 @@ namespace ConsoleApp1.Helpers
                 }
             }
         }
+        public void SeeDrug() {
+           
+            if (drugs.Count == 0)
+            {
+                Console.Clear();
+                Helper.Print("Bazada derman yoxdur!", ConsoleColor.DarkRed);
+                return;
+            }
+            Console.Clear();
+            foreach (var see in drugs)
+            {
+                Helper.Print($"ID:{see.Id} Ad: {see.Name} Tip: {see.DrugType} Say: {see.Count} Alis qiymeti: {see.PurchasePrice} Satis qiymeti: {see.SalePrice} Satisdan gelecek gelir: {(see.Count * see.SalePrice) - (see.Count * see.PurchasePrice)}", ConsoleColor.DarkMagenta);
+            }
+            return;
+          
+        }
+
     }
 }
         
