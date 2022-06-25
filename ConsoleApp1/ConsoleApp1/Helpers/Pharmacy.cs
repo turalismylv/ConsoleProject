@@ -395,6 +395,7 @@ namespace ConsoleApp1.Helpers
             
             if (emp.Count == 0)
             {
+                Console.Clear();
                 Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
@@ -421,7 +422,7 @@ namespace ConsoleApp1.Helpers
                 if (item5.Id == _didd)
                 {
                     employees.Remove(item5);
-
+                    Console.Clear();
                     Helper.Print($"{item5.Name.ToUpper()} adli emplooye silindi ", ConsoleColor.Blue);
                     break;
                 }

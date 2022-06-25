@@ -112,7 +112,7 @@ namespace ConsoleApp1
                                         case 5:
                                             #region deletemplooye
                                             pharmacy.DeletEmploye();
-                                            goto login;
+                                            goto adminmenu;
                                             
                                         #endregion
                                         case 6:
