@@ -185,6 +185,11 @@ namespace ConsoleApp1.Helpers
             Helper.Print("Dermanin sayini qeyd edin", ConsoleColor.Yellow);
             string dcoun = Console.ReadLine();
             bool IsCount = int.TryParse(dcoun, out int dcount);
+            if (dcount<=0)
+            {
+                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                goto IsCount;
+            }
             if (!IsCount)
             {
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -194,6 +199,12 @@ namespace ConsoleApp1.Helpers
             Helper.Print("Dermanin alis qiymetini daxil edin", ConsoleColor.Yellow);
             string dpurch = Console.ReadLine();
             bool isPur = double.TryParse(dpurch, out double dpurprice);
+            if (dpurprice<=0)
+            {
+
+                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                goto purchase;
+            }
             if (!isPur)
             {
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -207,7 +218,12 @@ namespace ConsoleApp1.Helpers
             saleprice:
             Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
             string dsal = Console.ReadLine();
-            bool isSal = double.TryParse(dsal, out double saleprice); ;
+            bool isSal = double.TryParse(dsal, out double saleprice);
+            if (saleprice<=0)
+            {
+                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                goto saleprice;
+            }
             if (!isSal)
             {
                 Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -314,6 +330,11 @@ namespace ConsoleApp1.Helpers
                     Helper.Print("Dermanin sayini qeyd edin", ConsoleColor.Yellow);
                     string dncoun = Console.ReadLine();
                     bool IsnCount = int.TryParse(dncoun, out int dncount);
+                    if (dncount<=0)
+                    {
+                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto IsnCount;
+                    }
                     if (!IsnCount)
                     {
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -323,6 +344,11 @@ namespace ConsoleApp1.Helpers
                     Helper.Print("Dermanin alis qiymetini daxil edin", ConsoleColor.Yellow);
                     string dnpurch = Console.ReadLine();
                     bool isnPur = double.TryParse(dnpurch, out double dnpurprice);
+                    if (dnpurprice<=0)
+                    {
+                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto npurchase;
+                    }
                     if (!isnPur)
                     {
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
@@ -338,6 +364,11 @@ namespace ConsoleApp1.Helpers
                     Helper.Print("Dermanin satis qiymetini daxil edin", ConsoleColor.Yellow);
                     string dnsal = Console.ReadLine();
                     bool isnSal = double.TryParse(dnsal, out double nsaleprice);
+                    if (nsaleprice<=0)
+                    {
+                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        goto nsaleprice;
+                    }
                     if (!isnSal)
                     {
                         Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
