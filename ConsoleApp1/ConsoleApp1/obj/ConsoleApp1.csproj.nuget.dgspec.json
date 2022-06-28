@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleProject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleApp1\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleProject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleApp1\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleProject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleApp1\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleProject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleApp1\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\tursl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleProject\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\tursl\\OneDrive\\Desktop\\ConsoleApp1\\ConsoleProject\\ConsoleApp1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tursl\\AppData\\Roaming\\NuGet\\NuGet.Config",

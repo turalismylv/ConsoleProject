@@ -45,6 +45,7 @@ namespace ConsoleApp1
                             bool IsInt = int.TryParse(nmenu, out int menu);
                             if (!IsInt)
                             {
+                                Console.Clear();
                                 Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                 goto admin;
                             }
@@ -52,6 +53,12 @@ namespace ConsoleApp1
                             {
                                 Console.Clear();
                                 goto login;
+                            }
+                            if (menu>4)
+                            {
+                                Console.Clear();
+                                Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                goto admin;
                             }
                             switch (menu)
                             {
@@ -79,6 +86,11 @@ namespace ConsoleApp1
                                     if (adminmenu==9)
                                     {
                                         goto admin;
+                                    }
+                                    if (adminmenu>9)
+                                    {
+                                        Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                        goto case 1;
                                     }
                                     switch (adminmenu)
                                     {
@@ -243,6 +255,7 @@ namespace ConsoleApp1
                             bool isSme = int.TryParse(snum, out int smenu);
                             if (!isSme)
                             {
+                                Console.Clear();
                                 Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                 goto staff;
                             }
@@ -250,6 +263,12 @@ namespace ConsoleApp1
                             {
                                 Console.Clear();
                                 goto login;
+                            }
+                            if (smenu>4)
+                            {
+                                Console.Clear();
+                                Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                goto staff;
                             }
                             switch (smenu)
                             {
