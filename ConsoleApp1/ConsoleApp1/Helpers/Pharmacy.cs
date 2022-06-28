@@ -42,7 +42,7 @@ namespace ConsoleApp1.Helpers
             bool isDate = DateTime.TryParse(edate, out DateTime dateTime);
             if (!isDate)
             {
-                Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                 goto dateTime;
             }
             esalary:
@@ -51,12 +51,12 @@ namespace ConsoleApp1.Helpers
             bool IsSal = int.TryParse(esal, out int esalary);
             if (!IsSal)
             {
-                Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                 goto esalary;
             }
             if (esalary < MinSalary)
             {
-                Helper.Print($"Bu mebleg aptekin shertlerin odemir: Minimum: {MinSalary}, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow($"Bu mebleg aptekin shertlerin odemir: Minimum: {MinSalary}, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto esalary;
             }
             eusername:
@@ -66,7 +66,7 @@ namespace ConsoleApp1.Helpers
             {
                 if (item1.Username == eusername)
                 {
-                    Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                    Helper.Printslow("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
                     goto eusername;
                 }
             }
@@ -84,28 +84,28 @@ namespace ConsoleApp1.Helpers
 
                 if (!hasLowerChar.IsMatch(password))
                 {
-                    Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else if (!hasUpperChar.IsMatch(password))
                 {
-                    Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else if (!hasMiniMaxChars.IsMatch(password))
                 {
-                    Helper.Print("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else if (!hasNumber.IsMatch(password))
                 {
-                    Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
 
                 else if (!hasSymbols.IsMatch(password))
                 {
-                    Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto SETPASS;
                 }
                 else
@@ -130,17 +130,17 @@ namespace ConsoleApp1.Helpers
                     }
                     else
                     {
-                        Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto roleType;
                     }
                     Console.Clear();
-                    Helper.Print($"{ename.ToUpper()} adli emplooye yaradildi", ConsoleColor.Yellow);
+                    Helper.Printslow($"{ename.ToUpper()} adli emplooye yaradildi", ConsoleColor.Yellow);
                     employees.Add(employee1);
                 }
             }
             else
             {
-                Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto SETPASS;
             }
 
@@ -169,7 +169,7 @@ namespace ConsoleApp1.Helpers
             }
             else
             {
-                Helper.Print("Yanlis daxil edildi,Yeniden duzgun daxil et", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,Yeniden duzgun daxil et", ConsoleColor.Red);
                 goto drugtype;
             }
 
@@ -177,7 +177,7 @@ namespace ConsoleApp1.Helpers
             {
                 if (item2.Name == dname && item2.DrugType == drug.DrugType)
                 {
-                    Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                     goto name1;
                 }
             }
@@ -187,12 +187,12 @@ namespace ConsoleApp1.Helpers
             bool IsCount = int.TryParse(dcoun, out int dcount);
             if (dcount<=0)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto IsCount;
             }
             if (!IsCount)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto IsCount;
             }
             purchase:
@@ -202,17 +202,17 @@ namespace ConsoleApp1.Helpers
             if (dpurprice<=0)
             {
 
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto purchase;
             }
             if (!isPur)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto purchase;
             }
             if (Budget < (dpurprice * dcount))
             {
-                Helper.Print($"Budceni kecdiyi ucun derman elave oluna bilmedi,MaxBudce: {Budget},Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow($"Budceni kecdiyi ucun derman elave oluna bilmedi,MaxBudce: {Budget},Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                goto IsCount;
             }
             saleprice:
@@ -221,12 +221,12 @@ namespace ConsoleApp1.Helpers
             bool isSal = double.TryParse(dsal, out double saleprice);
             if (saleprice<=0)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto saleprice;
             }
             if (!isSal)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto saleprice;
             }
             
@@ -237,14 +237,14 @@ namespace ConsoleApp1.Helpers
             drugs.Add(drug);
             Budget = Budget - (dpurprice * dcount);
             Console.Clear();
-            Helper.Print($"{dname.ToUpper()} adli derman elave olundu , Umumi budce: {Budget}", ConsoleColor.Green);
+            Helper.Printslow($"{dname.ToUpper()} adli derman elave olundu , Umumi budce: {Budget}", ConsoleColor.Green);
         }
         public void DeletDrug()
         {
             if (drugs.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Hal hazirda bazada derman yoxdur!", ConsoleColor.Red);
+                Helper.Printslow("Hal hazirda bazada derman yoxdur!", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Axtardiqiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
@@ -252,13 +252,13 @@ namespace ConsoleApp1.Helpers
             List<Drug> druge = drugs.FindAll(x => x.Name.ToUpper().Contains(search.ToUpper()));
             if (druge.Count == 0)
             {Console.Clear();
-                Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
+                Helper.Printslow("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var item4 in druge)
             {
 
-                Helper.Print($"ID: {item4.Id} Dernma Adi: {item4.Name.ToUpper()} Tip: {item4.DrugType}", ConsoleColor.Green);
+                Helper.Printslow($"ID: {item4.Id} Dernma Adi: {item4.Name.ToUpper()} Tip: {item4.DrugType}", ConsoleColor.Green);
 
             }
             did:
@@ -267,7 +267,7 @@ namespace ConsoleApp1.Helpers
             bool isId = int.TryParse(didd, out int did);
             if (!isId)
             {
-                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto did;
             }
             foreach (var item5 in drugs)
@@ -277,7 +277,7 @@ namespace ConsoleApp1.Helpers
                     drugs.Remove(item5);
                     Budget = Budget + (item5.PurchasePrice * item5.Count);
                     Console.Clear();
-                    Helper.Print($"{item5.Name.ToUpper()} adli derman silindi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
+                    Helper.Printslow($"{item5.Name.ToUpper()} adli derman silindi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                     break;
                 }
             }
@@ -287,7 +287,7 @@ namespace ConsoleApp1.Helpers
             if (drugs.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Hal hazirda bazada derman yoxdur ", ConsoleColor.Red);
+                Helper.Printslow("Hal hazirda bazada derman yoxdur ", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Editlemek istediyiniz dermanin adini daxil edin:", ConsoleColor.Yellow);
@@ -296,13 +296,13 @@ namespace ConsoleApp1.Helpers
             if (druge.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
+                Helper.Printslow("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var item4 in druge)
             {
 
-                Helper.Print($"ID: {item4.Id} AD: {item4.Name} Tip: {item4.DrugType}", ConsoleColor.Green);
+                Helper.Printslow($"ID: {item4.Id} AD: {item4.Name} Tip: {item4.DrugType}", ConsoleColor.Green);
 
             }
             didd:
@@ -311,7 +311,7 @@ namespace ConsoleApp1.Helpers
             bool isIdd = int.TryParse(ddid, out int _did);
             if (!isIdd)
             {
-                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto didd;
             }
             foreach (var item6 in drugs)
@@ -332,12 +332,12 @@ namespace ConsoleApp1.Helpers
                     bool IsnCount = int.TryParse(dncoun, out int dncount);
                     if (dncount<=0)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto IsnCount;
                     }
                     if (!IsnCount)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto IsnCount;
                     }
                     npurchase:
@@ -346,17 +346,17 @@ namespace ConsoleApp1.Helpers
                     bool isnPur = double.TryParse(dnpurch, out double dnpurprice);
                     if (dnpurprice<=0)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto npurchase;
                     }
                     if (!isnPur)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto npurchase;
                     }
                     if (Budget < (dnpurprice * dncount))
                     {
-                        Helper.Print("Budceni kecdiyi ucun derman elave oluna bilmedi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Budceni kecdiyi ucun derman elave oluna bilmedi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto IsnCount;
 
                     }
@@ -366,12 +366,12 @@ namespace ConsoleApp1.Helpers
                     bool isnSal = double.TryParse(dnsal, out double nsaleprice);
                     if (nsaleprice<=0)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto nsaleprice;
                     }
                     if (!isnSal)
                     {
-                        Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto nsaleprice;
                     }
                     
@@ -392,13 +392,13 @@ namespace ConsoleApp1.Helpers
                     }
                     else
                     {
-                        Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto newtype;
                     }
 
                     if (dt == item6.DrugType)
                     {
-                        Helper.Print("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto newdrug;
                     }
 
@@ -408,7 +408,7 @@ namespace ConsoleApp1.Helpers
                     item6.SalePrice = nsaleprice;
                     Budget = Budget - (dnpurprice * dncount);
                     Console.Clear();
-                    Helper.Print($"{item6.Name.ToUpper()} addli derman editlendi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
+                    Helper.Printslow($"{item6.Name.ToUpper()} addli derman editlendi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                 }
             }
         }
@@ -419,7 +419,7 @@ namespace ConsoleApp1.Helpers
             string dem = Console.ReadLine();
             if (dem == "admin")
             {
-                Helper.Print("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
+                Helper.Printslow("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
                 return;
             }
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(dem.ToUpper()));
@@ -427,7 +427,7 @@ namespace ConsoleApp1.Helpers
             if (emp.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
+                Helper.Printslow("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var em in emp)
@@ -440,12 +440,12 @@ namespace ConsoleApp1.Helpers
             bool isId_ = int.TryParse(ddidd, out int _didd);
             if (!isId_)
             {
-                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto _did;
             }
             if (_didd==1)
             {
-                Helper.Print("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
+                Helper.Printslow("SUPERADMIN siline bilmez!!", ConsoleColor.DarkRed);
                 return;
             }
             foreach (var item5 in employees)
@@ -454,7 +454,7 @@ namespace ConsoleApp1.Helpers
                 {
                     employees.Remove(item5);
                     Console.Clear();
-                    Helper.Print($"{item5.Name.ToUpper()} adli emplooye silindi ", ConsoleColor.Blue);
+                    Helper.Printslow($"{item5.Name.ToUpper()} adli emplooye silindi ", ConsoleColor.Blue);
                     break;
                 }
             }
@@ -465,7 +465,7 @@ namespace ConsoleApp1.Helpers
             if (employees.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Hal hazirda bazada emplooye yoxdur", ConsoleColor.Red);
+                Helper.Printslow("Hal hazirda bazada emplooye yoxdur", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Editlemek istediyiniz emplooye adini qeyd edin", ConsoleColor.Yellow);
@@ -473,14 +473,14 @@ namespace ConsoleApp1.Helpers
             if (edem=="admin")
             {
                 Console.Clear();
-                Helper.Print("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
+                Helper.Printslow("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
                 return;
             }
             List<Employee> emp = employees.FindAll(x => x.Name.ToUpper().Contains(edem.ToUpper()));
             if (emp.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
+                Helper.Printslow("Bu adda hecne tapila bilmedi", ConsoleColor.Red);
                 return;
             }
             foreach (var em in emp)
@@ -493,14 +493,14 @@ namespace ConsoleApp1.Helpers
             bool isDel = int.TryParse(delem, out int delid);
             if (!isDel)
             {
-                Helper.Print("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi zehmet olmasa yeniden daxil edin:", ConsoleColor.Red);
                 goto delid;
                 ;
             }
             if (delid == 1)
             {
                 Console.Clear();
-                Helper.Print("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
+                Helper.Printslow("SUPERADMIN editlene bilmez!!", ConsoleColor.DarkRed);
                 return;
             }
             foreach (var item5 in employees)
@@ -517,7 +517,7 @@ namespace ConsoleApp1.Helpers
                     bool isnDate = DateTime.TryParse(endate, out DateTime ndateTime);
                     if (!isnDate)
                     {
-                        Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                        Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                         goto dateTimee;
                     }
                     nesalary:
@@ -526,12 +526,12 @@ namespace ConsoleApp1.Helpers
                     bool IsnSal = int.TryParse(nesal, out int nesalary);
                     if (!IsnSal)
                     {
-                        Helper.Print($"Duzgun daxil edilmedi,MINIMUM: {MinSalary},Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                        Helper.Printslow($"Duzgun daxil edilmedi,MINIMUM: {MinSalary},Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                         goto nesalary;
                     }
                     if (nesalary < MinSalary)
                     {
-                        Helper.Print("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Bu mebleg aptekin shertlerin odemir, zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto nesalary;
                     }
                     neusername:
@@ -541,7 +541,7 @@ namespace ConsoleApp1.Helpers
                     {
                         if (item1.Username == neusername)
                         {
-                            Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                            Helper.Printslow("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
                             goto neusername;
                         }
                     }
@@ -560,28 +560,28 @@ namespace ConsoleApp1.Helpers
 
                         if (!hasLowerChar.IsMatch(password))
                         {
-                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Printslow("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
                         else if (!hasUpperChar.IsMatch(password))
                         {
-                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Printslow("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
                         else if (!hasMiniMaxChars.IsMatch(password))
                         {
-                            Helper.Print("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Printslow("Passwordda uzunluqu 6~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
                         else if (!hasNumber.IsMatch(password))
                         {
-                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Printslow("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
 
                         else if (!hasSymbols.IsMatch(password))
                         {
-                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                            Helper.Printslow("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                             goto SETPASS;
                         }
                         else
@@ -599,7 +599,7 @@ namespace ConsoleApp1.Helpers
                             }
                             else
                             {
-                                Helper.Print("Duzgun daxil edilmedi,Yeniden daxil edin", ConsoleColor.Red);
+                                Helper.Printslow("Duzgun daxil edilmedi,Yeniden daxil edin", ConsoleColor.Red);
                                 goto edroletype;
                             }
                             item5.Name = newem;
@@ -609,12 +609,12 @@ namespace ConsoleApp1.Helpers
                             item5.Username = neusername;
                             item5.Password = password;
                             Console.Clear();
-                            Helper.Print($"{item5.Name.ToUpper()} adli isci editlendi ", ConsoleColor.Blue);
+                            Helper.Printslow($"{item5.Name.ToUpper()} adli isci editlendi ", ConsoleColor.Blue);
                         }
                     }
                     else
                     {
-                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto SETPASS;
                     }
                 }
@@ -625,7 +625,7 @@ namespace ConsoleApp1.Helpers
             if (drugs.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Bazada derman yoxdu !!", ConsoleColor.Red);
+                Helper.Printslow("Bazada derman yoxdu !!", ConsoleColor.Red);
                 return;
             }
             Helper.Print("Derman adi daxil edin", ConsoleColor.DarkYellow);
@@ -635,7 +635,7 @@ namespace ConsoleApp1.Helpers
             string dyit = Console.ReadLine();
             if (dyit.ToLower() != "syrob".ToLower() && dyit.ToLower() != "powder".ToLower() && dyit.ToLower() != "tablet".ToLower())
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
                 goto ddd;
             }
             dsay:
@@ -644,7 +644,7 @@ namespace ConsoleApp1.Helpers
             bool isSay = int.TryParse(dsay, out int ddsay);
             if (!isSay)
             {
-                Helper.Print("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
+                Helper.Printslow("Yanlis daxil edildi,zehmet olmasa yeniden daxil edin", ConsoleColor.DarkRed);
                 goto dsay;
             }
 
@@ -652,7 +652,7 @@ namespace ConsoleApp1.Helpers
             if (drugess.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Qalmayib", ConsoleColor.Red);
+                Helper.Printslow("Qalmayib", ConsoleColor.Red);
                 return;
             }
             foreach (var druge in drugess)
@@ -660,12 +660,12 @@ namespace ConsoleApp1.Helpers
                 if (druge.Count == 0)
                 {
                     Console.Clear();
-                    Helper.Print("Qalmayib", ConsoleColor.Red);
+                    Helper.Printslow("Qalmayib", ConsoleColor.Red);
                     return;
                 }
                 if (druge.Count < ddsay)
                 {
-                    Helper.Print($"Qeyd etdiyiniz qeder yoxdur,{druge.Count} bu qeder derman var isteyirsinizmi?: yes/no", ConsoleColor.Blue);
+                    Helper.Printslow($"Qeyd etdiyiniz qeder yoxdur,{druge.Count} bu qeder derman var isteyirsinizmi?: yes/no", ConsoleColor.Blue);
                     yesno:
                     string yesno2 = Console.ReadLine();
                     int oldco = druge.Count;
@@ -675,7 +675,7 @@ namespace ConsoleApp1.Helpers
                         Budget = Budget + (druge.SalePrice * oldco);
                         drugs.Remove(druge);
                         Console.Clear();
-                        Helper.Print($"{druge.Name} adli derman satildi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
+                        Helper.Printslow($"{druge.Name} adli derman satildi ,UMUMI BUDCE : {Budget}", ConsoleColor.Blue);
                         return;
                     }
                     else if (yesno2.ToUpper() == "no".ToUpper())
@@ -685,7 +685,7 @@ namespace ConsoleApp1.Helpers
                     }
                     else
                     {
-                        Helper.Print("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
+                        Helper.Printslow("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
                         goto yesno;
                     }
                 }
@@ -698,7 +698,7 @@ namespace ConsoleApp1.Helpers
                     druge.Count = druge.Count - ddsay;
                     Budget = Budget + (druge.SalePrice * ddsay);
                     Console.Clear();
-                    Helper.Print($"{druge.Name.ToUpper()} adli derman {ddsay} eded satildi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
+                    Helper.Printslow($"{druge.Name.ToUpper()} adli derman {ddsay} eded satildi ,UMUMI BUDCE: {Budget}", ConsoleColor.Blue);
                 }
                 
                 else if (yesno.ToUpper() == "no".ToUpper())
@@ -708,7 +708,7 @@ namespace ConsoleApp1.Helpers
                 }
                 else
                 {
-                    Helper.Print("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
+                    Helper.Printslow("Yanlis daxil edildi,Yeniden daxil edin", ConsoleColor.Red);
                     goto yesno2;
                 }
             }
@@ -718,7 +718,7 @@ namespace ConsoleApp1.Helpers
             if (drugs.Count == 0)
             {
                 Console.Clear();
-                Helper.Print("Bazada derman yoxdur!", ConsoleColor.DarkRed);
+                Helper.Printslow("Bazada derman yoxdur!", ConsoleColor.DarkRed);
                 return;
             }
             Console.Clear();

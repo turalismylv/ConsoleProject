@@ -11,7 +11,7 @@ namespace ConsoleApp1
         {
             string s = "Zeferan.Aptek SISTEMINE XOSH GELMISINIZ";
             Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
-            Helper.Print(s, ConsoleColor.Yellow);
+            Helper.Printslow(s, ConsoleColor.Yellow);
             Pharmacy pharmacy = new Pharmacy("Zeferan.Aptek",200,1000,"Sabuncu.Zabrat");
             Employee admin = new Employee();
             admin.Username = "admin";
@@ -35,7 +35,7 @@ namespace ConsoleApp1
                         Console.Clear();
                         if (item.RoleType== RoleType.ADMIN)
                         {
-                            Helper.Print("Siz admin rolundasiniz", ConsoleColor.Yellow);
+                            Helper.Printslow("Siz admin rolundasiniz", ConsoleColor.Yellow);
                             admin:
                             Helper.Print("1.Admin Panel",ConsoleColor.Green);
                             Helper.Print("2.Satis et",ConsoleColor.Green);
@@ -45,7 +45,7 @@ namespace ConsoleApp1
                             bool IsInt = int.TryParse(nmenu, out int menu);
                             if (!IsInt)
                             {
-                                Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                 goto admin;
                             }
                             if (menu==4)
@@ -72,7 +72,7 @@ namespace ConsoleApp1
                                     bool IsInt1 = int.TryParse(adminmen, out int adminmenu);
                                     if (!IsInt1)
                                     {
-                                        Helper.Print("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
+                                        Helper.Printslow("Duzgun daxil edilmedi,Zehmet olmasa yeniden daxil edin!", ConsoleColor.Red);
                                         goto case 1;
                                     }
                                     
@@ -152,7 +152,7 @@ namespace ConsoleApp1
                                     if (item.Name=="admin")
                                     {
                                         Console.Clear();
-                                        Helper.Print("Siz SUPERADMIN olduqunuz ucun melumatlariniz yenilene bilmez", ConsoleColor.Red);
+                                        Helper.Printslow("Siz SUPERADMIN olduqunuz ucun melumatlariniz yenilene bilmez", ConsoleColor.Red);
                                         goto admin;
                                         
                                     }
@@ -170,7 +170,7 @@ namespace ConsoleApp1
                                     {
                                         if (item1.Username == eusername)
                                         {
-                                            Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                                            Helper.Printslow("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
                                             goto eusername;
                                         }
                                     }
@@ -189,28 +189,28 @@ namespace ConsoleApp1
 
                                         if (!hasLowerChar.IsMatch(npassword))
                                         {
-                                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasUpperChar.IsMatch(npassword))
                                         {
-                                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasMiniMaxChars.IsMatch(npassword))
                                         {
-                                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasNumber.IsMatch(npassword))
                                         {
-                                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
 
                                         else if (!hasSymbols.IsMatch(npassword))
                                         {
-                                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else
@@ -221,11 +221,11 @@ namespace ConsoleApp1
                                     }
                                     else
                                     {
-                                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                        Helper.Printslow("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                         goto SETPASS;
                                     }
                                     Console.Clear();
-                                    Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
+                                    Helper.Printslow("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto admin;
                                 #endregion
                                 default:
@@ -243,7 +243,7 @@ namespace ConsoleApp1
                             bool isSme = int.TryParse(snum, out int smenu);
                             if (!isSme)
                             {
-                                Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                 goto staff;
                             }
                             if (smenu==4)
@@ -273,7 +273,7 @@ namespace ConsoleApp1
                                     {
                                         if (item1.Username == eusername1)
                                         {
-                                            Helper.Print("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
+                                            Helper.Printslow("Bu username artiq movcuddur,Zehmet olmasa bashqa username istifade edin", ConsoleColor.Red);
                                             goto eusername;
                                         }
                                     }
@@ -291,28 +291,28 @@ namespace ConsoleApp1
 
                                         if (!hasLowerChar.IsMatch(npassword1))
                                         {
-                                            Helper.Print("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda kicik herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasUpperChar.IsMatch(npassword1))
                                         {
-                                            Helper.Print("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda boyuk herif yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasMiniMaxChars.IsMatch(npassword1))
                                         {
-                                            Helper.Print("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda uzunluqu 8~15 araliqinda deyil,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else if (!hasNumber.IsMatch(npassword1))
                                         {
-                                            Helper.Print("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda reqem yoxdur!,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
 
                                         else if (!hasSymbols.IsMatch(npassword1))
                                         {
-                                            Helper.Print("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                            Helper.Printslow("Passwordda xususi ishare yoxdur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                             goto SETPASS;
                                         }
                                         else
@@ -323,11 +323,11 @@ namespace ConsoleApp1
                                     }
                                     else
                                     {
-                                        Helper.Print("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                                        Helper.Printslow("Passwordda uzunluqu 5den azdir  ,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                                         goto SETPASS;
                                     }
                                     Console.Clear();
-                                    Helper.Print("Melumatlar yenilendi", ConsoleColor.Blue);
+                                    Helper.Printslow("Melumatlar yenilendi", ConsoleColor.Blue);
                                     goto staff;
                                 #endregion
                                 case 3:
@@ -343,7 +343,7 @@ namespace ConsoleApp1
                     }
                 }
                 Console.Clear();
-                Helper.Print("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
+                Helper.Printslow("Yanlis daxil edildi,Zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                 goto login1;
             }
             
