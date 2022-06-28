@@ -396,7 +396,7 @@ namespace ConsoleApp1.Helpers
                         goto newtype;
                     }
 
-                    if (dt == item6.DrugType)
+                    if (dt == item6.DrugType&&dnname==item6.Name)
                     {
                         Helper.Printslow("Bu adli ve typl derman artiq movcuddur,zehmet olmasa yeniden daxil edin", ConsoleColor.Red);
                         goto newdrug;
