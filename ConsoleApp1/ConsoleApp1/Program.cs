@@ -8,6 +8,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("sss");
             string s = "Zeferan.Aptek SISTEMINE XOSH GELMISINIZ";
             Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
             Helper.Printslow(s, ConsoleColor.Yellow);
